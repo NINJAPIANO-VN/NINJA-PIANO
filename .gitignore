@@ -1,41 +1,147 @@
-# Compiled Lua sources
-luac.out
-
-# luarocks build files
-*.src.rock
-*.zip
-*.tar.gz
-
-# Object files
-*.o
-*.os
-*.ko
-*.obj
-*.elf
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-*.def
-*.exp
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
+-- Khởi tạo ScreenGui độc lập để không bị mất khi hồi sinh (Reset)
+local ScreenGui = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local Title = Instance.new("TextLabel")
+local ScrollFrame = Instance.new("ScrollingFrame")
+local UIListLayout = Instance.new("UIListLayout")
+local UICorner = Instance.new("UICorner")
+ 
+-- Thiết lập Thuộc tính cho ScreenGui
+ScreenGui.Name = "MusicSelectorGUI"
+ScreenGui.Parent = game:GetService("CoreGui") or game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ResetOnSpawn = false
+ 
+-- Giao diện chính (Main Frame)
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = ScreenGui
+MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
+MainFrame.Position = UDim2.new(0.5, -190, 0.4, -220)
+MainFrame.Size = UDim2.new(0, 380, 0, 470)
+MainFrame.Active = true
+MainFrame.Draggable = true 
+ 
+local FrameCorner = Instance.new("UICorner")
+FrameCorner.CornerRadius = UDim.new(0, 10)
+FrameCorner.Parent = MainFrame
+ 
+-- Tiêu đề GUI
+Title.Name = "Title"
+Title.Parent = MainFrame
+Title.BackgroundColor3 = Color3.fromRGB(45, 45, 50)
+Title.Size = UDim2.new(1, 0, 0, 100) 
+Title.Font = Enum.Font.SourceSansBold
+Title.Text = [[🎵 BẢNG NHẠC UPDATE ĐẦY ĐỦ 🇻🇳 🌎
+(Cre script làm ra tất cả GEMINI, nhưng tôi thích ghi nguồn nhé :))) (@d4rkninja_1 lẫn 2) và cre nhạc việt @hello007568 - vài nhạc tôi lấy ổng hoặc của tôi nhé anh em ơi :D (Mà tôi cũng ko bt nhạc nào của tôi và của ổng nên kệ đi) mà liên hệ bên DISCORD hết KHÔNG MXH NÀO HẾT)]]
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextSize = 10
+Title.TextWrapped = true
+ 
+local TitleCorner = Instance.new("UICorner")
+TitleCorner.CornerRadius = UDim.new(0, 10)
+TitleCorner.Parent = Title
+ 
+-- Khung cuộn danh sách nhạc (Scrolling Frame)
+ScrollFrame.Name = "ScrollFrame"
+ScrollFrame.Parent = MainFrame
+ScrollFrame.Active = true
+ScrollFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 40)
+ScrollFrame.BackgroundTransparency = 1
+ScrollFrame.Position = UDim2.new(0, 10, 0, 110) 
+ScrollFrame.Size = UDim2.new(1, -20, 1, -120)
+ScrollFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+ScrollFrame.ScrollBarThickness = 6
+ 
+UIListLayout.Parent = ScrollFrame
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout.Padding = UDim.new(0, 8)
+ 
+UIListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+   ScrollFrame.CanvasSize = UDim2.new(0, 0, 0, UIListLayout.AbsoluteContentSize.Y + 10)
+end)
+ 
+-- Bảng danh sách nhạc đồng bộ chuẩn 100%
+local Songs = {
+   {Name = "10 Ngàn Năm", BPM = 110, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/3722cdaffcc002609f724e726949ade5/raw/custom_song.lua"}, --
+   {Name = "Ai Đưa Em Về", BPM = 100, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/bd2a972a0be12259fe721fc5d83bc4fa/raw/custom_song.lua"}, --
+   {Name = "Buông Tay Nhau", BPM = 102, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/d970947153b3f54a012c0c9250d72a63/raw/custom_song.lua"}, --
+   {Name = "Chạnh Lòng Thương Cô", BPM = 123, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/54ca9c6c1fa2ee07a3084e58d9e0aaaa/raw/custom_song.lua"}, --
+   {Name = "Michael Jackson - Billie Jean", BPM = 120, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/e120546fd7c75c98267761c604a157a1/raw/custom_song.lua"}, --
+   {Name = "Thằng Điên", BPM = 116, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/62128ca63ac26eb13674fd219499be23/raw/custom_song.lua"}, --
+   {Name = "Nỗi Buồn Giữa Hòa Bình", BPM = 83, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/d6e0aad8a855d14c4f85517b6640b77d/raw/custom_song.lua"}, --
+   {Name = "Nơi Này Có Anh", BPM = 90, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/01bd21299c602916c5c0842c981d7eeb/raw/custom_song.lua"}, --
+   {Name = "Phép Màu", BPM = 70, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/0c1e7ffb16f3a749ee438b71da1c08bb/raw/custom_song.lua"}, --
+   {Name = "Tết Tết Tết Đến Rồi", BPM = 95, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/d59f959888a17bac2bd84a2a691c3d05/raw/custom_song.lua"}, --
+   {Name = "Tháng Tư Là Lời Nói Dối Của Em", BPM = 64, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/2f3572ce3ca4180eb0b75e3066f104fc/raw/custom_song.lua"}, --
+   {Name = "Thiên Lý Ơi", BPM = 90, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/0d79716f94d27b7f2ed7051c885e187b/raw/custom_song.lua"}, --
+   {Name = "Mưa Đỏ", BPM = 80, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/f99ce228ea1c44368b4b1727103802ec/raw/custom_song.lua"}, --
+   {Name = "Khuôn Mặt Đáng Thương", BPM = 120, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/e8aedecc9b70d23dfd6f664c49c64137/raw/custom_song.lua"}, --
+   {Name = "Dĩ Vãng Nhạt Nhòa", BPM = 120, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/be0d47cb9f0da8fc004447f61b8ff0f4/raw/custom_song.lua"}, --
+   {Name = "Low Cortisol", BPM = 100, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/0ea3827b31e590c349333bfd4ec25d6e/raw/custom_song.lua"}, --
+   {Name = "Thiếu Niên Hoa Hồng", BPM = 95, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/cb69bab1e5a29a09834c8b9ffecbd28f/raw/custom_song.lua"}, --
+   {Name = "Trước Khi Em Tồn Tại", BPM = 64, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/57047106da268cb326773d60678199b6/raw/custom_song.lua"} --
+}
+ 
+-- Hàm thực thi nạp nhạc linh hoạt dựa trên cấu trúc từng bài hát
+local function PlayMusic(bpmValue, loaderUrl, songUrl)
+   _G.bpm = bpmValue
+   bpm = bpmValue 
+   
+   print("Đang tải bài hát với BPM: " .. tostring(bpmValue))
+   
+   pcall(function()
+      loadstring(game:HttpGet(loaderUrl, true))()
+   end)
+   pcall(function()
+      loadstring(game:HttpGet(songUrl, true))()
+   end)
+end
+ 
+-- Tạo các nút bấm nhạc vào danh sách cuộn
+for index, song in ipairs(Songs) do
+   local Button = Instance.new("TextButton")
+   local ButtonCorner = Instance.new("UICorner")
+   
+   Button.Name = "Song_" .. index
+   Button.Parent = ScrollFrame
+   Button.BackgroundColor3 = Color3.fromRGB(50, 50, 60)
+   Button.Size = UDim2.new(1, -6, 0, 40)
+   Button.Font = Enum.Font.SourceSansSemibold
+   Button.Text = "  " .. song.Name .. " (BPM: " .. tostring(song.BPM) .. ")"
+   Button.TextColor3 = Color3.fromRGB(230, 230, 230)
+   Button.TextSize = 14
+   Button.TextXAlignment = Enum.TextXAlignment.Left 
+   
+   ButtonCorner.CornerRadius = UDim.new(0, 6)
+   ButtonCorner.Parent = Button
+   
+   -- Hiệu ứng rê chuột vào nút
+   Button.MouseEnter:Connect(function()
+      Button.BackgroundColor3 = Color3.fromRGB(70, 70, 85)
+   end)
+   Button.MouseLeave:Connect(function()
+      Button.BackgroundColor3 = Color3.fromRGB(50, 50, 60)
+   end)
+   
+   -- Xử lý click chọn bài
+   Button.MouseButton1Click:Connect(function()
+      local originalText = Button.Text
+      
+      -- Đã trả lại câu thông báo chuẩn gu của bạn
+      Button.Text = "  ⏳ Đang chuẩn bị đánh piano⏳: " .. song.Name .. "..."
+      Button.BackgroundColor3 = Color3.fromRGB(100, 80, 40)
+      
+      PlayMusic(song.BPM, song.LoaderUrl, song.SongUrl)
+      
+      task.wait(1)
+      Button.Text = originalText
+      Button.BackgroundColor3 = Color3.fromRGB(50, 50, 60)
+   end)
+end
+ 
+-- Bấm RightShift để Ẩn/Hiện bảng nhạc khi chơi game
+local UserInputService = game:GetService("UserInputService")
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+   if not gameProcessed and input.KeyCode == Enum.KeyCode.RightShift then
+      MainFrame.Visible = not MainFrame.Visible
+   end
+end)
