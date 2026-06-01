@@ -95,7 +95,9 @@ local Songs = {
    {Name = "Russia Song (by ninja)", BPM = 250, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/7de1a6414262d7a0cae1344166053bc5/raw/custom_song.lua"},
    {Name = "Anyone Can Find Love Except You \n(by ninja - create of GitHub song (i don't have link hellohellohello12321) \n", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://raw.githubusercontent.com/ScriptAutoPlayerVietnamese6736-VN/Anyone-Can-Find-Love-Except-You/refs/heads/main/Anyone%20Can%20Find%20Love%20Except%20You"},
    {Name = "How Do You Do? (by ninja)", BPM = 135, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/d9304813c34c17ebf639c12122ac4e29/raw/custom_song.lua"},
-   {Name = "Kiss Me Again!! (by ninja) - wait for like 1 minute will start", BPM = 135, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/d9304813c34c17ebf639c12122ac4e29/raw/custom_song.lua"},
+   {Name = "Kiss Me Again!! (by ninja) - wait for like 1 minute will start", BPM = 155, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/6b904f324d48b4a318447913bed8c33d/raw/custom_song.lua"},
+   {Name = "Tiki Tiki Phonk (by ninja)", BPM = 110, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/26119bb9db89a47662b0450cde540d73/raw/custom_song.lua"},
+   {Name = "Back On Track (by ninja)", BPM = 110, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/c55ade10b908424f43d50ae285fd5a76/raw/custom_song.lua"},
     -- ==================== NHẠC ALL (THÊM ĐỂ LÀM GIẤU A:D) ====================-
     {Name = "Megalovani (idea by cucucaca0543_38989)", BPM = 120, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/d554e42b624cd40e5fff42fb72032b42/raw/custom_song.lua"},
     {Name = "Michael Jackson - Billie Jean", BPM = 120, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/1667db122a6440780cbdb1d43ce59e10/raw/custom_song.lua"},
@@ -146,9 +148,9 @@ local KeyTitle = Instance.new("TextLabel")
 KeyTitle.Size = UDim2.new(1, 0, 0, 45)
 KeyTitle.BackgroundColor3 = Color3.fromRGB(45, 45, 50)
 KeyTitle.Font = Enum.Font.SourceSansBold
-KeyTitle.Text = "🔑 ENTER KEY 🔑 "
+KeyTitle.Text = "🔑 ENTER KEY 🔑 \nLinks: (https://linkvertise.com/6151259/sW38PrGDk2Jp?o=sharing) "
 KeyTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-KeyTitle.TextSize = 16
+KeyTitle.TextSize = 11
 KeyTitle.Parent = KeyFrame
 
 local KeyInput = Instance.new("TextBox")
@@ -262,9 +264,9 @@ HideCorner.Parent = HideButton
 -- XỬ LÝ SỰ KIỆN TƯƠNG TÁC
 ----------------------------------------------------------------
 
--- Nhấp nút Xác nhận Key 6767
+-- Nhấp nút Xác nhận Key e3ab901e-5639-4101-a8aa-ade1cf3be8d4
 SubmitBtn.MouseButton1Click:Connect(function()
-    if KeyInput.Text == "6767" then
+    if KeyInput.Text == "e3ab901e-5639-4101-a8aa-ade1cf3be8d4" then
         KeyFrame:TweenSizeAndPosition(UDim2.new(0, 0, 0, 0), UDim2.new(0.5, 0, 0.5, 0), Enum.EasingDirection.In, Enum.EasingStyle.Back, 0.3)
         task.wait(0.3)
         KeyFrame:Destroy()
