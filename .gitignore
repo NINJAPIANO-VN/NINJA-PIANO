@@ -104,7 +104,7 @@ local Songs = {
    {Name = "🇻🇳 HÀO KHÍ VIỆT NAM 🇻🇳 (by ninja)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/5de632bd53d8166bfb0dad6caf8adf5b/raw/custom_song.lua"},
    {Name = "That Girl (by ninja)", BPM = 89, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/9bbf83b9c2880ff44e56aa860a538c49/raw/custom_song.lua"},
    {Name = "No Compromise (by ninja)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/cd8eff70ba7696499a8e10d13b62a944/raw/custom_song.lua"},
-
+   {Name = "Fall Rain (by ninja) - (idea by 77z2712_56960)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/9fd7586e27ca2a8b96c3ea09ad1b1d25/raw/custom_song.lua"},
     -- ==================== NHẠC ALL (THÊM ĐỂ LÀM GIẤU A:D) ====================-
     {Name = "Megalovani (idea by cucucaca0543_38989)", BPM = 120, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/d554e42b624cd40e5fff42fb72032b42/raw/custom_song.lua"},
     {Name = "Michael Jackson - Billie Jean", BPM = 120, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/1667db122a6440780cbdb1d43ce59e10/raw/custom_song.lua"},
