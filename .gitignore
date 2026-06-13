@@ -172,7 +172,7 @@ KeyInput.Font = Enum.Font.SourceSans
 KeyInput.Text = ""
 KeyInput.PlaceholderText = "Nhập Key tại đây..."
 KeyInput.TextColor3 = Color3.fromRGB(255, 255, 255)
-KeyInput.TextSize = 16
+KeyInput.TextSize = 20
 KeyInput.Parent = KeyFrame
 
 local KeyInputCorner = Instance.new("UICorner")
@@ -186,7 +186,7 @@ SubmitBtn.BackgroundColor3 = Color3.fromRGB(0, 150, 100)
 SubmitBtn.Font = Enum.Font.SourceSansBold
 SubmitBtn.Text = "XÁC NHẬN"
 SubmitBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-SubmitBtn.TextSize = 17
+SubmitBtn.TextSize = 20
 SubmitBtn.Parent = KeyFrame
 
 local SubmitCorner = Instance.new("UICorner")
@@ -222,9 +222,9 @@ Title.Parent = MainFrame
 Title.BackgroundColor3 = Color3.fromRGB(45, 45, 50)
 Title.Size = UDim2.new(1, 0, 0, 85) 
 Title.Font = Enum.Font.SourceSansBold
-Title.Text = "🎵 NINJA PIANO 🎹 (🇻🇳 AND 🌎)\nCre: @d4rkninja_1 & @d4rkninja_2 (TẠO BỞI GEMINI AI)| PIANO AUTOPLAYER: @hello007568 và VITL Piano (SCRIPT) CRE SCRIPT: @vitl1107 - (VÀI BÀI CỦA TÔI)\nVui lòng ghi CRE \nNếu có lấy SCRIPT TÔI MÀ CƯỚP NHẠC AUTOPLAYER THÌ GHI NGUỒN HỘ TAO <3 \nVà liên hệ bên DISCORD\n(KHÔNG MXH) - LINK SEVER BÊN LINKVERTISE MÀ 1 ADS THÔI NHA CÁC CON VỢ <3 \nhttps://linkvertise.com/6151259/5SHRLh6387CZ"
+Title.Text = "🎵 NINJA PIANO 🎹 (🇻🇳 AND 🌎)\nCre: @d4rkninja_1 & @d4rkninja_2 (TẠO BỞI GEMINI AI)| PIANO AUTOPLAYER: @hello007568 và VITL Piano (SCRIPT) CRE SCRIPT: @vitl1107 - (VÀI BÀI CỦA TÔI)\nVui lòng ghi CRE \nNếu có lấy SCRIPT TÔI (MÀ CƯỚP NHẠC AUTOPLAYER THÌ GHI NGUỒN HỘ TAO) <3 \nVà liên hệ bên DISCORD\n(KHÔNG MXH) - LINK SEVER BÊN LINKVERTISE MÀ 1 ADS THÔI NHA CÁC CON VỢ <3 \nhttps://linkvertise.com/6151259/5SHRLh6387CZ"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title.TextSize = 10
+Title.TextSize = 9
 Title.TextWrapped = true
 
 local TitleCorner = Instance.new("UICorner")
@@ -336,7 +336,7 @@ for index, song in ipairs(Songs) do
     
     Button.MouseButton1Click:Connect(function()
         local originalText = Button.Text
-        Button.Text = "  ⏳ Loading autoplayer piano 🎹: " .. song.Name .. "..."
+        Button.Text = "  ⏳ Loading AUTOPLAYER PIANO 🎹: " .. song.Name .. "..."
         Button.BackgroundColor3 = Color3.fromRGB(100, 80, 40)
         
         PlayMusicAsync(song.BPM, song.LoaderUrl, song.SongUrl)
