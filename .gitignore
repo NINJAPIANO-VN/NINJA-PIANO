@@ -172,7 +172,7 @@ KeyInput.Font = Enum.Font.SourceSans
 KeyInput.Text = ""
 KeyInput.PlaceholderText = "Nhập Key tại đây..."
 KeyInput.TextColor3 = Color3.fromRGB(255, 255, 255)
-KeyInput.TextSize = 20
+KeyInput.TextSize = 19
 KeyInput.Parent = KeyFrame
 
 local KeyInputCorner = Instance.new("UICorner")
@@ -186,7 +186,7 @@ SubmitBtn.BackgroundColor3 = Color3.fromRGB(0, 150, 100)
 SubmitBtn.Font = Enum.Font.SourceSansBold
 SubmitBtn.Text = "XÁC NHẬN"
 SubmitBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-SubmitBtn.TextSize = 20
+SubmitBtn.TextSize = 19
 SubmitBtn.Parent = KeyFrame
 
 local SubmitCorner = Instance.new("UICorner")
