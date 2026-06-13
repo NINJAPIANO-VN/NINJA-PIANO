@@ -172,7 +172,7 @@ KeyInput.Font = Enum.Font.SourceSans
 KeyInput.Text = ""
 KeyInput.PlaceholderText = "Nhập Key tại đây..."
 KeyInput.TextColor3 = Color3.fromRGB(255, 255, 255)
-KeyInput.TextSize = 14
+KeyInput.TextSize = 15
 KeyInput.Parent = KeyFrame
 
 local KeyInputCorner = Instance.new("UICorner")
