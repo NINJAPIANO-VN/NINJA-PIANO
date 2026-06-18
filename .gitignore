@@ -250,12 +250,12 @@ Title.Parent = MainFrame
 Title.BackgroundColor3 = Color3.fromRGB(45, 45, 50)
 Title.Size = UDim2.new(1, 0, 0, 85) 
 Title.Font = Enum.Font.SourceSansBold
-Title.Text = "🎵 NINJA PIANO 🎹 (🇻🇳 AND 🌎)\nCre: @d4rkninja_1 & @d4rkninja_2 (TẠO BỞI GEMINI AI)| PIANO AUTOPLAYER: @hello007568 và VITL Piano (SCRIPT) CRE SCRIPT: @vitl1107 - (VÀI BÀI CỦA TÔI)\nVui lòng ghi CRE \nNếu có lấy SCRIPT TÔI (MÀ CƯỚP NHẠC AUTOPLAYER THÌ GHI NGUỒN HỘ TAO) <3 \nVà liên hệ bên DISCORD\n(KHÔNG MXH) - LINK SEVER BÊN LINKVERTISE MÀ 1 ADS THÔI NHA CÁC CON VỢ <3 \nhttps://linkvertise.com/6151259/5SHRLh6387CZ"
+Title.Text = "🎵 NINJA PIANO 🎹 (🇻🇳 VÀ 🌎)\nCre: @d4rkninja_1 & @d4rkninja_2 (TẠO BỞI GEMINI AI) | \nPIANO AUTOPLAYER: @hello007568 và VITL Piano (SCRIPT) CRE SCRIPT: @vitl1107 \n(VÀI BÀI CỦA TÔI (A.K.A NINJA) \nLiên hệ bên DISCORD và TIKTOK | Nếu Cần GIỬ SEVER DISCORD Thì IB | Cảm ơn <3 😘"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title.TextSize = 9
+Title.TextSize = 12
 Title.TextWrapped = true
 
-local TitleCorner = Instance.new("UICorner")
+local TitleCorner = Instance.new("UICorner")    
 TitleCorner.CornerRadius = UDim.new(0, 10)
 TitleCorner.Parent = Title
 
