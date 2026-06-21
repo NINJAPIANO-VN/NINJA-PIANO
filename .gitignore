@@ -13,7 +13,7 @@ ScreenGui.Parent = CoreGui
 
 -- Danh sách nhạc (Giữ nguyên gốc từ file của bạn)
 local Songs = {
-    -- ==================== NHẠC ALL (THÊM ĐỂ LÀM GIẤU A:D) ==================== -
+    -- ==================== FULL SONG BY NINJA AND HUGE22_ AND HELLO AND VITL AND ALL IDEA IN DISCORD==================== -
     {Name = "10 Ngàn Năm", BPM = 110, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/3722cdaffcc002609f724e726949ade5/raw/custom_song.lua"},
     {Name = "Ai Đưa Em Về (bản hello)", BPM = 100, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/bd2a972a0be12259fe721fc5d83bc4fa/raw/custom_song.lua"},
     {Name = "Buông Tay Nhau", BPM = 102, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/d970947153b3f54a012c0c9250d72a63/raw/custom_song.lua"},
@@ -142,13 +142,13 @@ local Songs = {
    {Name = "Mosi Mosi?", BPM = 144, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/5d70641037ca2bdf7c8ce2b66306f421/raw/custom_song.lua"},
    {Name = "My Head Is Spinning Like A Screw (by ninja)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/c07d18a651039d32f2b1ddf46b6ed123/raw/custom_song.lua"},
    {Name = "Oliver Tree - Life Goes On 🕊️ REST AND PEACE 🕊️ (by ninja)", BPM = 80, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/207c0db7ae2ef8f08c61c7931211632c/raw/custom_song.lua"},
-   {Name = "Attack On Titan (by ninja) - (idea by laund3wzx.)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/b2c8c7848713b980ec682ee2987211ac/raw/custom_song.lua"},
-    -- ==================== NHẠC ALL (THÊM ĐỂ LÀM GIẤU A:D) ====================-
-    {Name = "Megalovani (idea by cucucaca0543_38989)", BPM = 120, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/d554e42b624cd40e5fff42fb72032b42/raw/custom_song.lua"},
-    {Name = "Michael Jackson - Billie Jean", BPM = 120, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/1667db122a6440780cbdb1d43ce59e10/raw/custom_song.lua"},
-    {Name = "Love Story (DEEP)", BPM = 180, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/7eee23f7ffa43c8443cdd0210812364c/raw/custom_song.lua"},
-    {Name = "Phonecert (폰서트) - 10CM (idea by ngoc123_123)", BPM = 108, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/5486e6607adeb3bb5f92a8861693cbcb/raw/custom_song.lua"},
-    {Name = "Idea 22", BPM = 114, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/ea31095db7c91a290097414a5e8d1095/raw/custom_song.lua"}
+   {Name = "Attack On Titan (by ninja (MIDI) và huge22_ (SCRIPT SONG)) - (idea by laund3wzx.) \n", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/8632dad89ff195fe3f58c31c03463bbd/raw/custom_song.lua"},
+   {Name = "Megalovani (idea by cucucaca0543_38989)", BPM = 120, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/d554e42b624cd40e5fff42fb72032b42/raw/custom_song.lua"},
+   {Name = "Michael Jackson - Billie Jean", BPM = 120, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/1667db122a6440780cbdb1d43ce59e10/raw/custom_song.lua"},
+   {Name = "Love Story (DEEP)", BPM = 180, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/7eee23f7ffa43c8443cdd0210812364c/raw/custom_song.lua"},
+   {Name = "Phonecert (폰서트) - 10CM (idea by ngoc123_123)", BPM = 108, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/5486e6607adeb3bb5f92a8861693cbcb/raw/custom_song.lua"},
+   {Name = "Idea 22", BPM = 114, LoaderUrl = "https://hellohellohell0.com/talentless-raw/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/ea31095db7c91a290097414a5e8d1095/raw/custom_song.lua"},
+   {Name = "Yến Vô Hiết (by ninja) - (idea by kikemeomeoz_14056)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/6384a8779bcd9630eeffc5cdc80d709a/raw/custom_song.lua"},
 
 }
 
