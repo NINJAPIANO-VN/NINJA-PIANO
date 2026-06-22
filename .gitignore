@@ -77,6 +77,8 @@ SongUrl = "https://gist.githack.com/talentless-custom-songs/5de632bd53d8166bfb0d
    {Name = "That Girl (by ninja) - (idea by noten789123)", BPM = 92, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/e822c97a3b17c95714e160d94909857d/raw/custom_song.lua"},
    {Name = "Như Anh Đã Thấy Em (by ninja) - (idea by land3wzx.)", BPM = 60, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/a7e2e33d55fd6e7f42d8ee7e004c6a58/raw/custom_song.lua"},
    {Name = "Nụ Cười 18 20 (by ninja)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/b10a9ecdb873d4a502321388ceb8d153/raw/custom_song.lua"},
+   {Name = "Heavenly Jumpstyle (by ninja)", BPM = 130, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/2d8aa14e8382b0438b7259c980dc7700/raw/custom_song.lua"},
+   {Name = "Phép Màu (by ninja)", BPM = 70, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/194ad9948c26efde1370addd6f10f784/raw/custom_song.lua"},
 
 
    -- ==================== SONG BY HELLO BUT IT HAVE FIX IN MY BY NINJA  AND VITL SCRIPT/FROM HER AND RANDOM GUY IN DISCORD LOL <3 ==================== -
