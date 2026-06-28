@@ -193,269 +193,47 @@ end
 ----------------------------------------------------------------
 -- 1. GIAO DIỆN KHUNG ĐĂNG NHẬP (KEY SYSTEM)
 ----------------------------------------------------------------
--- =========================================================
--- NINJA Hub Piano — Key Gate UI (Junkie / jnkie.com)
--- Buyer pastes their key into the in-game UI. On success this
--- gate loadstrings the main script.
--- =========================================================
+-- Cấu hình
+local CORRECT_KEY = "56877012-37f8-4801-825e-dd0656555faa"
+local VALID_DURATION = 86400 -- 24 giờ (tính bằng giây)
 
-local MAIN_SCRIPT_URL = "https://api.jnkie.com/api/v1/luascripts/public/3c32ec3084b1f6f7b13d9d30f1d7200477afea3755e7c2399cd3e10a5114b72d/download"
-local SAVE_PATH       = "NINJA_key.txt"
+-- Lưu biến vào môi trường global để giữ trạng thái
+getgenv().KeyAuthenticated = getgenv().KeyAuthenticated or false
+getgenv().ExpiryTime = getgenv().ExpiryTime or 0
 
-local TweenService = game:GetService("TweenService")
-local Players      = game:GetService("Players")
-local LocalPlayer  = Players.LocalPlayer
-
-local okSdk, Junkie = pcall(function()
-    return loadstring(game:HttpGet("https://jnkie.com/sdk/library.lua"))()
-end)
-if not okSdk or type(Junkie) ~= "table" then
-    return warn("[NINJA Hub] Failed to load Junkie SDK: " .. tostring(Junkie))
-end
-Junkie.service    = "NINJA PIANO"
-Junkie.identifier = "1095119"
-Junkie.provider   = "Ninja Piano"
-
--- ---------- UI ----------
-local KeyGui = Instance.new("ScreenGui")
-KeyGui.Name = "NINJAKeyGate"
-KeyGui.ResetOnSpawn = false
-KeyGui.IgnoreGuiInset = true
-KeyGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-local parented = pcall(function() KeyGui.Parent = game:GetService("CoreGui") end)
-if not parented then KeyGui.Parent = LocalPlayer:WaitForChild("PlayerGui") end
-
-local Backdrop = Instance.new("Frame")
-Backdrop.Size = UDim2.fromScale(1, 1)
-Backdrop.BackgroundColor3 = Color3.fromRGB(5, 5, 5)
-Backdrop.BackgroundTransparency = 0.35
-Backdrop.BorderSizePixel = 0
-Backdrop.ZIndex = 0
-Backdrop.Parent = KeyGui
-
-local Card = Instance.new("Frame")
-Card.AnchorPoint = Vector2.new(0.5, 0.5)
-Card.Position = UDim2.fromScale(0.5, 0.5)
-Card.Size = UDim2.new(0, 360, 0, 230)
-Card.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
-Card.BorderSizePixel = 0
-Card.ZIndex = 1
-Card.Parent = KeyGui
-Instance.new("UICorner", Card).CornerRadius = UDim.new(0, 12)
-
-local Stroke = Instance.new("UIStroke", Card)
-Stroke.Thickness = 1.5
-Stroke.Color = Color3.fromRGB(255, 255, 255)
-local StrokeGradient = Instance.new("UIGradient", Stroke)
-StrokeGradient.Color = ColorSequence.new({
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(130, 0, 255)),
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 200, 255)),
-})
-
-local Title = Instance.new("TextLabel")
-Title.BackgroundTransparency = 1
-Title.Position = UDim2.new(0, 0, 0, 14)
-Title.Size = UDim2.new(1, 0, 0, 30)
-Title.Font = Enum.Font.GothamBlack
-Title.Text = "NINJA PIANO"
-Title.TextSize = 24
-Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title.ZIndex = 2
-Title.Parent = Card
-local TitleGradient = Instance.new("UIGradient", Title)
-TitleGradient.Color = ColorSequence.new({
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(150, 150, 255)),
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),
-})
-
-local Subtitle = Instance.new("TextLabel")
-Subtitle.BackgroundTransparency = 1
-Subtitle.Position = UDim2.new(0, 0, 0, 46)
-Subtitle.Size = UDim2.new(1, 0, 0, 16)
-Subtitle.Font = Enum.Font.GothamMedium
-Subtitle.Text = "Enter your premium key to continue"
-Subtitle.TextSize = 12
-Subtitle.TextColor3 = Color3.fromRGB(180, 180, 220)
-Subtitle.ZIndex = 2
-Subtitle.Parent = Card
-
-local InputHolder = Instance.new("Frame")
-InputHolder.AnchorPoint = Vector2.new(0.5, 0)
-InputHolder.Position = UDim2.new(0.5, 0, 0, 78)
-InputHolder.Size = UDim2.new(0, 310, 0, 38)
-InputHolder.BackgroundColor3 = Color3.fromRGB(25, 25, 28)
-InputHolder.BorderSizePixel = 0
-InputHolder.ZIndex = 2
-InputHolder.Parent = Card
-Instance.new("UICorner", InputHolder).CornerRadius = UDim.new(0, 8)
-local InputStroke = Instance.new("UIStroke", InputHolder)
-InputStroke.Thickness = 1
-InputStroke.Color = Color3.fromRGB(60, 60, 70)
-InputStroke.Transparency = 0.2
-
-local KeyBox = Instance.new("TextBox")
-KeyBox.BackgroundTransparency = 1
-KeyBox.Position = UDim2.new(0, 12, 0, 0)
-KeyBox.Size = UDim2.new(1, -24, 1, 0)
-KeyBox.Font = Enum.Font.GothamMedium
-KeyBox.PlaceholderText = "Paste your key here"
-KeyBox.PlaceholderColor3 = Color3.fromRGB(120, 120, 140)
-KeyBox.Text = ""
-KeyBox.TextColor3 = Color3.fromRGB(245, 245, 250)
-KeyBox.TextXAlignment = Enum.TextXAlignment.Left
-KeyBox.TextSize = 14
-KeyBox.ClearTextOnFocus = false
-KeyBox.ZIndex = 3
-KeyBox.Parent = InputHolder
-
-local Status = Instance.new("TextLabel")
-Status.BackgroundTransparency = 1
-Status.Position = UDim2.new(0, 0, 0, 124)
-Status.Size = UDim2.new(1, 0, 0, 18)
-Status.Font = Enum.Font.GothamMedium
-Status.Text = ""
-Status.TextSize = 12
-Status.TextColor3 = Color3.fromRGB(220, 90, 110)
-Status.ZIndex = 2
-Status.Parent = Card
-
-local VerifyBtn = Instance.new("TextButton")
-VerifyBtn.AnchorPoint = Vector2.new(0.5, 0)
-VerifyBtn.Position = UDim2.new(0.5, -80, 1, -58)
-VerifyBtn.Size = UDim2.new(0, 150, 0, 38)
-VerifyBtn.BackgroundColor3 = Color3.fromRGB(95, 60, 220)
-VerifyBtn.BorderSizePixel = 0
-VerifyBtn.AutoButtonColor = false
-VerifyBtn.Font = Enum.Font.GothamBold
-VerifyBtn.TextSize = 14
-VerifyBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-VerifyBtn.Text = "Verify"
-VerifyBtn.ZIndex = 2
-VerifyBtn.Parent = Card
-Instance.new("UICorner", VerifyBtn).CornerRadius = UDim.new(0, 8)
-
-local GetKeyBtn = Instance.new("TextButton")
-GetKeyBtn.AnchorPoint = Vector2.new(0.5, 0)
-GetKeyBtn.Position = UDim2.new(0.5, 80, 1, -58)
-GetKeyBtn.Size = UDim2.new(0, 150, 0, 38)
-GetKeyBtn.BackgroundColor3 = Color3.fromRGB(60, 60, 70)
-GetKeyBtn.BorderSizePixel = 0
-GetKeyBtn.AutoButtonColor = false
-GetKeyBtn.Font = Enum.Font.GothamBold
-GetKeyBtn.TextSize = 14
-GetKeyBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-GetKeyBtn.Text = "Get Key"
-GetKeyBtn.ZIndex = 2
-GetKeyBtn.Parent = Card
-Instance.new("UICorner", GetKeyBtn).CornerRadius = UDim.new(0, 8)
-
-local function setStatus(msg, isError)
-    Status.Text = msg or ""
-    Status.TextColor3 = isError
-        and Color3.fromRGB(220, 90, 110)
-        or Color3.fromRGB(110, 220, 140)
-end
-
-local function closeUI()
-    for _, obj in ipairs(Card:GetDescendants()) do
-        if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
-            TweenService:Create(obj, TweenInfo.new(0.2), { TextTransparency = 1 }):Play()
-        end
-    end
-    TweenService:Create(Card,     TweenInfo.new(0.25), { BackgroundTransparency = 1 }):Play()
-    TweenService:Create(Stroke,   TweenInfo.new(0.25), { Transparency = 1 }):Play()
-    TweenService:Create(Backdrop, TweenInfo.new(0.25), { BackgroundTransparency = 1 }):Play()
-    task.wait(0.3)
-    KeyGui:Destroy()
-end
-
--- ---------- Verify flow ----------
-local verifying = false
-local validatedKey = nil
-
-local function attemptVerify()
-    if verifying then return end
-    local key = KeyBox.Text
-    if type(key) ~= "string" or key:gsub("%s", "") == "" then
-        setStatus("Please paste your key first.", true)
-        return
-    end
-    verifying = true
-    VerifyBtn.Text = "Verifying..."
-    setStatus("", false)
-
-    task.spawn(function()
-        SCRIPT_KEY = key
-        local checkOk, result = pcall(function() return Junkie.check_key(key) end)
-        local errCode = result and (result.error or result.message)
-        local errStr  = tostring(errCode or ""):upper()
-        local rateLimited =
-            (not checkOk and tostring(result):find("429"))
-            or errStr:find("RATE") or errStr:find("LIMIT") or errStr:find("429")
-
-        if rateLimited then
-            setStatus("Rate-limited by Junkie. Wait 30s and try again.", true)
-            for i = 30, 1, -1 do
-                VerifyBtn.Text = "Wait " .. i .. "s"
-                task.wait(1)
-            end
-        elseif not checkOk then
-            setStatus("Network error: " .. tostring(result), true)
-        elseif not (result and result.valid) then
-            setStatus("[" .. tostring(errCode or "INVALID") .. "]", true)
-        else
-            validatedKey = key
-            if writefile then pcall(writefile, SAVE_PATH, key) end
-            setStatus("Key accepted. Loading...", false)
-            task.wait(0.4)
-            closeUI()
-            return
-        end
-        VerifyBtn.Text = "Verify"
-        verifying = false
-    end)
-end
-
-VerifyBtn.MouseButton1Click:Connect(attemptVerify)
-KeyBox.FocusLost:Connect(function(enter) if enter then attemptVerify() end end)
-
-GetKeyBtn.MouseButton1Click:Connect(function()
-    local url = "https://jnkie.com/k/" .. Junkie.identifier
-    pcall(function() url = Junkie.get_key_url() or url end)
-    if setclipboard then
-        setclipboard(url)
-        setStatus("Copied link to clipboard!", false)
+local function checkKeyExpiration()
+    if getgenv().KeyAuthenticated and os.time() < getgenv().ExpiryTime then
+        return true
     else
-        setStatus("Your executor doesn't support setclipboard.", true)
-    end
-end)
-
--- ---------- Auto-load ----------
-if isfile and readfile and isfile(SAVE_PATH) then
-    local saved = readfile(SAVE_PATH)
-    if saved and #saved:gsub("%s", "") > 0 then
-        KeyBox.Text = saved
-        setStatus("Saved key found. Auto-verifying...", false)
-        task.delay(0.5, attemptVerify)
+        getgenv().KeyAuthenticated = false
+        return false
     end
 end
 
--- Block until UI is destroyed.
-repeat task.wait() until KeyGui.Parent == nil
-
-if not validatedKey then
-    return warn("[NINJA Hub] Key gate closed without a valid key.")
-end
-
-SCRIPT_KEY = validatedKey
-
-local loadOk, loadErr = pcall(function()
-    loadstring(game:HttpGet(MAIN_SCRIPT_URL))()
+-- Sự kiện nhấn nút xác nhận
+SubmitBtn.MouseButton1Click:Connect(function()
+    if KeyInput.Text == CORRECT_KEY then
+        getgenv().KeyAuthenticated = true
+        getgenv().ExpiryTime = os.time() + VALID_DURATION
+        
+        KeyTitle.Text = "XÁC NHẬN THÀNH CÔNG!"
+        KeyTitle.BackgroundColor3 = Color3.fromRGB(0, 150, 100)
+        task.wait(1)
+        KeyFrame:Destroy()
+        
+        -- NƠI GỌI SCRIPT CHÍNH CỦA BẠN VÀO ĐÂY
+        print("Script đã được kích hoạt. Hạn sử dụng: " .. tostring(os.date("%Y-%m-%d %H:%M:%S", getgenv().ExpiryTime)))
+    else
+        KeyInput.Text = ""
+        KeyInput.PlaceholderText = "Sai Key, vui lòng thử lại!"
+    end
 end)
-if not loadOk then
-    warn("[NINJA Hub] Failed to load main script: " .. tostring(loadErr))
-end
 
+-- Kiểm tra tự động khi mở script
+if checkKeyExpiration() then
+    KeyFrame:Destroy()
+    print("Key vẫn còn hạn, bỏ qua bước nhập.")
+end
 ----------------------------------------------------------------
 -- 2. KHUNG GIAO DIỆN CHÍNH (MAIN MENU)
 ----------------------------------------------------------------
