@@ -328,7 +328,33 @@ HideCorner.Parent = HideButton
 -- Nhấp nút Xác nhận Key e3ab901e-5639-4101-a8aa-ade1cf3be8d4
 SubmitBtn.MouseButton1Click:Connect(function()
     if KeyInput.Text == "e3ab901e-5639-4101-a8aa-ade1cf3be8d4" then
-        local VALID_DURATION = 1
+-- Hàm kiểm tra và kick
+local function monitorExpiry()
+    task.spawn(function()
+        while true do
+            local expiry = getgenv().KeyExpiry
+            -- Nếu đã có Key nhưng thời gian hiện tại đã vượt quá thời hạn
+            if expiry and os.time() >= expiry then
+                -- Kick người chơi
+                game.Players.LocalPlayer:Kick("Key đã hết hạn! Vui lòng nhập lại để tiếp tục sử dụng.")
+                break -- Dừng vòng lặp sau khi kick
+            end
+            task.wait(60) -- Kiểm tra mỗi 1 phút một lần để không làm lag game
+        end
+    end)
+end
+
+-- Khi xác nhận Key thành công:
+SubmitBtn.MouseButton1Click:Connect(function()
+    if KeyInput.Text == CORRECT_KEY then
+        getgenv().SavedKey = KeyInput.Text
+        getgenv().KeyExpiry = os.time() + VALID_DURATION
+        
+        monitorExpiry() -- Bắt đầu kích hoạt chế độ "trông chừng" thời gian
+        ScreenGui:Destroy()
+        startScript()
+    end
+end)
         KeyFrame:TweenSizeAndPosition(UDim2.new(0, 0, 0, 0), UDim2.new(0.5, 0, 0.5, 0), Enum.EasingDirection.In, Enum.EasingStyle.Back, 0.3)
         task.wait(0.3)
         KeyFrame:Destroy()
@@ -343,14 +369,7 @@ SubmitBtn.MouseButton1Click:Connect(function()
         KeyInput.PlaceholderText = "Sai Key! Vui lòng nhập lại..."
     end
 end)
--- TỰ ĐỘNG KIỂM TRA NGAY KHI SCRIPT CHẠY
-if isKeyAuthenticated() then
-    startScript()
-else
-    -- Nếu chưa có Key, mới tạo GUI
-    local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
-     end
-end
+
 
 -- Xử lý ẩn/hiện Menu bằng Icon bên phải
 local menuVisible = true
