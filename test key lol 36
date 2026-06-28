@@ -328,33 +328,35 @@ HideCorner.Parent = HideButton
 -- Nhấp nút Xác nhận Key e3ab901e-5639-4101-a8aa-ade1cf3be8d4
 SubmitBtn.MouseButton1Click:Connect(function()
     if KeyInput.Text == "e3ab901e-5639-4101-a8aa-ade1cf3be8d4" then
--- Hàm kiểm tra và kick
+-- Cấu hình
+local WARNING_TIME = 3600 -- 1 giờ (tính bằng giây)
+
 local function monitorExpiry()
     task.spawn(function()
         while true do
             local expiry = getgenv().KeyExpiry
-            -- Nếu đã có Key nhưng thời gian hiện tại đã vượt quá thời hạn
-            if expiry and os.time() >= expiry then
-                -- Kick người chơi
-                game.Players.LocalPlayer:Kick("Key đã hết hạn! Vui lòng nhập lại để tiếp tục sử dụng.")
-                break -- Dừng vòng lặp sau khi kick
+            if expiry then
+                local timeLeft = expiry - os.time()
+                
+                -- Cảnh báo trước 1 giờ
+                if timeLeft <= WARNING_TIME and timeLeft > 0 then
+                    game.StarterGui:SetCore("SendNotification", {
+                        Title = "CẢNH BÁO KEY!",
+                        Text = "Key của bạn sẽ hết hạn trong 1 giờ nữa! Hãy chuẩn bị.",
+                        Duration = 10
+                    })
+                end
+                
+                -- Kick khi hết hạn
+                if timeLeft <= 0 then
+                    game.Players.LocalPlayer:Kick("Key đã hết hạn! Vui lòng nhập lại.")
+                    break
+                end
             end
-            task.wait(60) -- Kiểm tra mỗi 1 phút một lần để không làm lag game
+            task.wait(300) -- Kiểm tra mỗi 5 phút để tiết kiệm tài nguyên
         end
     end)
 end
-
--- Khi xác nhận Key thành công:
-SubmitBtn.MouseButton1Click:Connect(function()
-    if KeyInput.Text == CORRECT_KEY then
-        getgenv().SavedKey = KeyInput.Text
-        getgenv().KeyExpiry = os.time() + VALID_DURATION
-        
-        monitorExpiry() -- Bắt đầu kích hoạt chế độ "trông chừng" thời gian
-        ScreenGui:Destroy()
-        startScript()
-    end
-end)
         KeyFrame:TweenSizeAndPosition(UDim2.new(0, 0, 0, 0), UDim2.new(0.5, 0, 0.5, 0), Enum.EasingDirection.In, Enum.EasingStyle.Back, 0.3)
         task.wait(0.3)
         KeyFrame:Destroy()
