@@ -329,7 +329,7 @@ HideCorner.Parent = HideButton
 SubmitBtn.MouseButton1Click:Connect(function()
     if KeyInput.Text == "NINJAPIANO-COCAIDAUBUOINHAMAY" then
 -- Cấu hình
-local WARNING_TIME = 3600 -- 1 giờ (tính bằng giây)
+local WARNING_TIME = 86400 -- 24 giờ (tính bằng giây)
 
 local function monitorExpiry()
     task.spawn(function()
