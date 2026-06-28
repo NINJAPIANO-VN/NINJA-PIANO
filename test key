@@ -328,7 +328,7 @@ HideCorner.Parent = HideButton
 -- Nhấp nút Xác nhận Key e3ab901e-5639-4101-a8aa-ade1cf3be8d4
 SubmitBtn.MouseButton1Click:Connect(function()
     if KeyInput.Text == "e3ab901e-5639-4101-a8aa-ade1cf3be8d4" then
-        local VALID_DURATION = 86400 -- 24 giờ
+        local VALID_DURATION = 1
         KeyFrame:TweenSizeAndPosition(UDim2.new(0, 0, 0, 0), UDim2.new(0.5, 0, 0.5, 0), Enum.EasingDirection.In, Enum.EasingStyle.Back, 0.3)
         task.wait(0.3)
         KeyFrame:Destroy()
