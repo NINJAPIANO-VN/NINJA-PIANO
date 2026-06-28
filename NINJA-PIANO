@@ -209,7 +209,7 @@ local KeyTitle = Instance.new("TextLabel")
 KeyTitle.Size = UDim2.new(1, 0, 0, 45)
 KeyTitle.BackgroundColor3 = Color3.fromRGB(45, 45, 50)
 KeyTitle.Font = Enum.Font.SourceSansBold
-KeyTitle.Text = "🔑 ENTER KEY 🔑 \nLinks: (https://linkvertise.com/6151259/sW38PrGDk2Jp) \nKEY BỞI NINJA | NHỜ @vitl1107 LÀM \nTHÌ TITLE NÓ SKIBIDI QUÁ NÊN ĐỂ BTH"
+KeyTitle.Text = "🔑 KEY SYSTEM 🔑 BẢN QUYỀN KEY BỞI NINJA (TỰ ĐI ĂN XIN ĐI LƯỜI LÀM LINKVERTISE :)) "
 KeyTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 KeyTitle.TextSize = 11
 KeyTitle.Parent = KeyFrame
@@ -272,7 +272,7 @@ Title.Parent = MainFrame
 Title.BackgroundColor3 = Color3.fromRGB(45, 45, 50)
 Title.Size = UDim2.new(1, 0, 0, 85) 
 Title.Font = Enum.Font.SourceSansBold
-Title.Text = "🎵 NINJA PIANO 🎹 (🇻🇳 VÀ 🌎)\nCre: @d4rkninja_1 & @d4rkninja_2 (TẠO BỞI GEMINI AI) \nPIANO AUTOPLAYER: @hello007568 và VITL Piano (SCRIPT) | CRE SCRIPT: @vitl1107 \n(VÀI BÀI CỦA TÔI (A.K.A NINJA) \nNếu lấy SCRIPT NHẠC AUTO PLAYER PIANO thì GHI HỘ NGUỒN GIÙM TAO \nTY <3 😘\nLiên hệ bên DISCORD và TIKTOK | Nếu Cần GIỬ SEVER DISCORD Thì IB | Cảm ơn <3 😘"
+Title.Text = "🎵 NINJA PIANO 🎹 (🇻🇳 VÀ 🌎)\nCre: @d4rkninja_1 & @d4rkninja_2 (TẠO BỞI GEMINI AI) \nPIANO AUTOPLAYER: @hello007568 và VITL Piano (SCRIPT) | CRE SCRIPT: @vitl1107 \n(VÀI BÀI CỦA TÔI (A.K.A NINJA) \nLiên hệ bên DISCORD và TIKTOK | Nếu Cần GIỬ SEVER DISCORD Thì IB | Cảm ơn <3 😘 \nRoblox: ninjapiano_script"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextSize = 11
 Title.TextWrapped = true
@@ -325,9 +325,38 @@ HideCorner.Parent = HideButton
 -- XỬ LÝ SỰ KIỆN TƯƠNG TÁC
 ----------------------------------------------------------------
 
--- Nhấp nút Xác nhận Key e3ab901e-5639-4101-a8aa-ade1cf3be8d4
+-- Nhấp nút Xác nhận Key
 SubmitBtn.MouseButton1Click:Connect(function()
-    if KeyInput.Text == "e3ab901e-5639-4101-a8aa-ade1cf3be8d4" then
+    if KeyInput.Text == "NINJAPIANO-COCAIDAUBUOINHAMAY" then
+-- Cấu hình
+local WARNING_TIME = 3600 -- 1 giờ (tính bằng giây)
+
+local function monitorExpiry()
+    task.spawn(function()
+        while true do
+            local expiry = getgenv().KeyExpiry
+            if expiry then
+                local timeLeft = expiry - os.time()
+                
+                -- Cảnh báo trước 1 giờ
+                if timeLeft <= WARNING_TIME and timeLeft > 0 then
+                    game.StarterGui:SetCore("SendNotification", {
+                        Title = "CẢNH BÁO KEY!",
+                        Text = "Key của bạn sẽ hết hạn trong 1 giờ nữa! Hãy chuẩn bị.",
+                        Duration = 10
+                    })
+                end
+                
+                -- Kick khi hết hạn
+                if timeLeft <= 0 then
+                    game.Players.LocalPlayer:Kick("Key đã hết hạn! Vui lòng nhập lại.")
+                    break
+                end
+            end
+            task.wait(300) -- Kiểm tra mỗi 5 phút để tiết kiệm tài nguyên
+        end
+    end)
+end
         KeyFrame:TweenSizeAndPosition(UDim2.new(0, 0, 0, 0), UDim2.new(0.5, 0, 0.5, 0), Enum.EasingDirection.In, Enum.EasingStyle.Back, 0.3)
         task.wait(0.3)
         KeyFrame:Destroy()
@@ -342,6 +371,7 @@ SubmitBtn.MouseButton1Click:Connect(function()
         KeyInput.PlaceholderText = "Sai Key! Vui lòng nhập lại..."
     end
 end)
+
 
 -- Xử lý ẩn/hiện Menu bằng Icon bên phải
 local menuVisible = true
