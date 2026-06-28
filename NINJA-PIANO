@@ -209,9 +209,9 @@ local KeyTitle = Instance.new("TextLabel")
 KeyTitle.Size = UDim2.new(1, 0, 0, 45)
 KeyTitle.BackgroundColor3 = Color3.fromRGB(45, 45, 50)
 KeyTitle.Font = Enum.Font.SourceSansBold
-KeyTitle.Text = "🔑 KEY SYSTEM 🔑 BẢN QUYỀN KEY BỞI NINJA (TỰ ĐI ĂN XIN ĐI LƯỜI LÀM LINKVERTISE :)) "
+KeyTitle.Text = "🔑 KEY SYSTEM 🔑 \nBẢN QUYỀN KEY BỞI NINJA \n(TỰ ĐI ĂN XIN ĐI LƯỜI LÀM LINKVERTISE :)) "
 KeyTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-KeyTitle.TextSize = 11
+KeyTitle.TextSize = 10
 KeyTitle.Parent = KeyFrame
 
 local KeyInput = Instance.new("TextBox")
