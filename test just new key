@@ -193,47 +193,92 @@ end
 ----------------------------------------------------------------
 -- 1. GIAO DIỆN KHUNG ĐĂNG NHẬP (KEY SYSTEM)
 ----------------------------------------------------------------
--- Cấu hình
+-- Tạo GUI
+local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+local KeyFrame = Instance.new("Frame")
+KeyFrame.Name = "KeyFrame"
+KeyFrame.Parent = ScreenGui
+KeyFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
+KeyFrame.Size = UDim2.new(0, 300, 0, 180)
+KeyFrame.Position = UDim2.new(0.5, -150, 0.5, -90)
+KeyFrame.ClipsDescendants = true
+
+local KeyCorner = Instance.new("UICorner", KeyFrame)
+KeyCorner.CornerRadius = UDim.new(0, 10)
+
+local KeyTitle = Instance.new("TextLabel", KeyFrame)
+KeyTitle.Size = UDim2.new(1, 0, 0, 45)
+KeyTitle.BackgroundColor3 = Color3.fromRGB(45, 45, 50)
+KeyTitle.Font = Enum.Font.SourceSansBold
+KeyTitle.Text = "🔑 ENTER KEY 🔑 \nLinks: (https://linkvertise.com/6151259/sW38PrGDk2Jp) \nKEY BỞI NINJA | NHỜ @vitl1107 LÀM"
+KeyTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+KeyTitle.TextSize = 11
+
+local KeyInput = Instance.new("TextBox", KeyFrame)
+KeyInput.Size = UDim2.new(0.8, 0, 0, 35)
+KeyInput.Position = UDim2.new(0.1, 0, 0.4, 0)
+KeyInput.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
+KeyInput.Font = Enum.Font.SourceSans
+KeyInput.PlaceholderText = "Nhập Key tại đây..."
+KeyInput.TextColor3 = Color3.fromRGB(255, 255, 255)
+KeyInput.TextSize = 15
+
+local KeyInputCorner = Instance.new("UICorner", KeyInput)
+KeyInputCorner.CornerRadius = UDim.new(0, 6)
+
+local SubmitBtn = Instance.new("TextButton", KeyFrame)
+SubmitBtn.Size = UDim2.new(0.5, 0, 0, 35)
+SubmitBtn.Position = UDim2.new(0.25, 0, 0.7, 0)
+SubmitBtn.BackgroundColor3 = Color3.fromRGB(0, 150, 100)
+SubmitBtn.Font = Enum.Font.SourceSansBold
+SubmitBtn.Text = "XÁC NHẬN"
+SubmitBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+SubmitBtn.TextSize = 19
+
+local SubmitCorner = Instance.new("UICorner", SubmitBtn)
+SubmitCorner.CornerRadius = UDim.new(0, 6)
+
+-- Logic Key System
 local CORRECT_KEY = "56877012-37f8-4801-825e-dd0656555faa"
-local VALID_DURATION = 86400 -- 24 giờ (tính bằng giây)
+local VALID_DURATION = 86400 -- 24 giờ
 
--- Lưu biến vào môi trường global để giữ trạng thái
-getgenv().KeyAuthenticated = getgenv().KeyAuthenticated or false
-getgenv().ExpiryTime = getgenv().ExpiryTime or 0
-
-local function checkKeyExpiration()
-    if getgenv().KeyAuthenticated and os.time() < getgenv().ExpiryTime then
+local function isKeyValid()
+    local expiry = getgenv().KeyExpiry
+    if expiry and os.time() < expiry then
         return true
-    else
-        getgenv().KeyAuthenticated = false
-        return false
     end
+    return false
 end
 
--- Sự kiện nhấn nút xác nhận
+local function startScript()
+    print("Key hợp lệ! Đang chạy script chính...")
+    -- [VIẾT SCRIPT CHÍNH CỦA BẠN DƯỚI ĐÂY]
+end
+
+-- Kiểm tra ngay khi khởi động
+if isKeyValid() then
+    ScreenGui:Destroy()
+    startScript()
+else
+    -- Hiệu ứng Pop-up nếu chưa có Key
+    KeyFrame.Size = UDim2.new(0, 0, 0, 0)
+    KeyFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
+    KeyFrame:TweenSizeAndPosition(UDim2.new(0, 300, 0, 180), UDim2.new(0.5, -150, 0.5, -90), Enum.EasingDirection.Out, Enum.EasingStyle.Back, 0.4)
+end
+
+-- Xử lý khi nhấn nút
 SubmitBtn.MouseButton1Click:Connect(function()
     if KeyInput.Text == CORRECT_KEY then
-        getgenv().KeyAuthenticated = true
-        getgenv().ExpiryTime = os.time() + VALID_DURATION
-        
-        KeyTitle.Text = "XÁC NHẬN THÀNH CÔNG!"
-        KeyTitle.BackgroundColor3 = Color3.fromRGB(0, 150, 100)
-        task.wait(1)
-        KeyFrame:Destroy()
-        
-        -- NƠI GỌI SCRIPT CHÍNH CỦA BẠN VÀO ĐÂY
-        print("Script đã được kích hoạt. Hạn sử dụng: " .. tostring(os.date("%Y-%m-%d %H:%M:%S", getgenv().ExpiryTime)))
+        getgenv().KeyExpiry = os.time() + VALID_DURATION
+        KeyFrame:TweenSizeAndPosition(UDim2.new(0, 0, 0, 0), UDim2.new(0.5, 0, 0.5, 0), Enum.EasingDirection.In, Enum.EasingStyle.Back, 0.4)
+        task.wait(0.4)
+        ScreenGui:Destroy()
+        startScript()
     else
         KeyInput.Text = ""
-        KeyInput.PlaceholderText = "Sai Key, vui lòng thử lại!"
+        KeyInput.PlaceholderText = "Sai Key! Vui lòng nhập lại"
     end
 end)
-
--- Kiểm tra tự động khi mở script
-if checkKeyExpiration() then
-    KeyFrame:Destroy()
-    print("Key vẫn còn hạn, bỏ qua bước nhập.")
-end
 ----------------------------------------------------------------
 -- 2. KHUNG GIAO DIỆN CHÍNH (MAIN MENU)
 ----------------------------------------------------------------
