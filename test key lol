@@ -343,23 +343,14 @@ SubmitBtn.MouseButton1Click:Connect(function()
         KeyInput.PlaceholderText = "Sai Key! Vui lòng nhập lại..."
     end
 end)
--- Hàm kiểm tra xem Key đã lưu còn hạn không
-local function isKeyAuthenticated()
-    local expiry = getgenv().KeyExpiry or 0
-    if getgenv().SavedKey == CORRECT_KEY and os.time() < expiry then
-        return true
-    end
-    return false
-end
-
 -- TỰ ĐỘNG KIỂM TRA NGAY KHI SCRIPT CHẠY
 if isKeyAuthenticated() then
     startScript()
 else
-    -- Nếu chưa có Key hoặc hết hạn, mới tạo GUI
+    -- Nếu chưa có Key, mới tạo GUI
     local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
      end
-end)
+end
 
 -- Xử lý ẩn/hiện Menu bằng Icon bên phải
 local menuVisible = true
