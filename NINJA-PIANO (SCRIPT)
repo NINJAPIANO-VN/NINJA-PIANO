@@ -93,10 +93,19 @@ SongUrl = "https://gist.githack.com/talentless-custom-songs/5de632bd53d8166bfb0d
    {Name = "Có Mình Và Ta (by ninja) - (idea by laund3wzx.)", BPM = 96, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/61d6efe893ef4f2e26646ba1ebcb41c8/raw/custom_song.lua"},
    {Name = "Gánh Mẹ (by ninja)", BPM = 100, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/3a027774ef9331132feb602c800ddd43/raw/custom_song.lua"},
    {Name = "Nắng Ấm Xa Dần (by ninja) - (idea by zcyc9fh)", BPM = 126, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/01d6c82b81810732dc1c1e00b400ff63/raw/custom_song.lua"},
+   {Name = "Nắng Ấm Xa Dần (Fix by zcyc9fh.)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/d938634dfd9323ef08b2af3e4189dfc4/raw/custom_song.lua"},
    {Name = "Thức Giấc (by ninja) - (idea by laund3wzx.)", BPM = 125, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/776c12530b78f7c3ed4a2e87753a5e30/raw/custom_song.lua"},
    {Name = "Đoạn Tuyệt Nàng (by ninja) - (idea by zcyc9fh.)", BPM = 140, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/5d322f98ad3a9c4ca527d8d089d38fac/raw/custom_song.lua"},
+   {Name = "Đoạn Tuyệt Nàng (Fix by zcyc9fh.)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/35cfd91cb4b6e18653c7933af76fc69d/raw/custom_song.lua"},
    {Name = "Duyên Trời Lấy 2 (by ninja) - (idea by zcyc9fh.)", BPM = 185, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/7f8debe9aa37128e4872c5a5ec177039/raw/custom_song.lua"},
    {Name = "Tát Nhật Lãng Rực Rỡ (by ninja) - (idea by zcyc9fh.)", BPM = 112, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/34369bce8f016593e0d2dd9cbf2e176c/raw/custom_song.lua"},
+   {Name = "Tát Nhật Lãng Rực Rỡ (Fix by zcyc9fh.)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/2161bfcb499bbb76d6527864b9e0ae4a/raw/custom_song.lua"},
+{Name = "Lighter (NHẠC WORLD CUP DỞ NHÂT CỦA NĂM 2026) - (by ninja) \n", BPM = 157, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/58bcc4bd98e306ccfa4eed3226add059/raw/custom_song.lua"},
+{Name = "(BÀI WORLD CUP MỚI CỦA ISHOWGAY) - (by ninja)", BPM = 126, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/74d67fe097309c2583f3592c6825a23a/raw/custom_song.lua"},
+{Name = "(BÀI WORLD CUP CŨ CỦA ISHOWGAY) - (by ninja)", BPM = 115, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/35cc63a64c6767c2e936ae2c777e4957/raw/custom_song.lua"},
+{Name = "WAKA WAKA (WORLDCUP SONG) (by ninja)", BPM = 64, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/8d426dd64a161da632775d4694b92926/raw/custom_song.lua"},
+
+
 
 
 
@@ -192,7 +201,13 @@ SongUrl = "https://gist.githack.com/talentless-custom-songs/5de632bd53d8166bfb0d
    {Name = "Yến Vô Hiết", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/c08ece77536381469e4a4f33c7459583/raw/custom_song.lua"},
    {Name = "Come My Way - bro thật sự bỏ ra 2 phút làm này  💀 💀", BPM = 110, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/763d267a50ee1c4abc400ee55e34b9f5/raw/custom_song.lua"},
    {Name = "Cry For Me", BPM = 92, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/a3449e0cd63dd706e951dcfaf89d77aa/raw/custom_song.lua"},
-   {Name = "Fall Rain", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/10b5386281cad511fa62ab8aa3f909cf/raw/custom_song.lua"},    
+   {Name = "Fall Rain", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/10b5386281cad511fa62ab8aa3f909cf/raw/custom_song.lua"},  
+   {Name = "Việt Nam ƠI (by zcyc9fh.)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/712b05d61bbbf7bd0c07ab223576abbc/raw/custom_song.lua"},
+   {Name = "Simple Love V1 (by zcyc9fh.)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/2161bfcb499bbb76d6527864b9e0ae4a/raw/custom_song.lua"},
+   {Name = "Simple Love V2 (by zcyc9fh.)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/123de0f3d42507462ad9b0a20667439c/raw/custom_song.lua"},
+   {Name = "Em Của Ngày Hôm Qua (by zcyc9fh.)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/c8398ea8615d4b9342fc76210a6283ca/raw/custom_song.lua"},
+   {Name = "Golden Hour (by zcyc9fh.)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/f1dfc9df70ffaeb8f53d289c3457e245/raw/custom_song.lua"},
+
 
 
 
