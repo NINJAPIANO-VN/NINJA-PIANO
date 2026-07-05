@@ -255,6 +255,10 @@ SongUrl = "https://gist.githack.com/talentless-custom-songs/5de632bd53d8166bfb0d
 {Name = "Jeopardy Theme (by frrrrrr)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/1fc8ad01a55a884727e41d320f390c57/raw/custom_song.lua"},
 {Name = "Cry For Me (idea by tkmgame) - (by frrrrrr)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/a2add7c3020d47ac9063f10da12da780/raw/custom_song.lua"},
 {Name = "River Flows In You (idea by tkmgame) - (by frrrrrr)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/19a3d76dac86caa6ad7266ff0492bb70/raw/custom_song.lua"},
+{Name = "Tìm Em (idea by trgianghe) - (by frrrrrr)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/5317f58b7144a500407522bccc3b1d5e/raw/custom_song.lua"},
+{Name = "Past Lives (idea by laund3wzx.) - (by frrrrrr)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/091e284f56e583d53bb746b866345d42/raw/custom_song.lua"},
+
+
 
 
 
