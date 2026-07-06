@@ -257,6 +257,10 @@ SongUrl = "https://gist.githack.com/talentless-custom-songs/5de632bd53d8166bfb0d
 {Name = "River Flows In You (idea by tkmgame) - (by frrrrrr)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/19a3d76dac86caa6ad7266ff0492bb70/raw/custom_song.lua"},
 {Name = "Tìm Em (idea by trgianghe) - (by frrrrrr)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/5317f58b7144a500407522bccc3b1d5e/raw/custom_song.lua"},
 {Name = "Past Lives (idea by laund3wzx.) - (by frrrrrr)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/091e284f56e583d53bb746b866345d42/raw/custom_song.lua"},
+{Name = "Happy Birthday (by frrrrrr)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/78da59c7ef24a2f7b3d64c81de57a64e/raw/custom_song.lua"},
+{Name = "In The Sea (idea by tdmh_0411) – (by frrrrrr)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/131ccd67402ff4d5d3e75d1cb8dcc4bc/raw/custom_song.lua"},
+{Name = "Despacito (idea by tkmgame) – (by frrrrrr)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/7cbfc982165304735fa9fb6eb7b019ab/raw/custom_song.lua"},
+
 
 
 
