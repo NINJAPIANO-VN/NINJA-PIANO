@@ -44,6 +44,7 @@ SubmitBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 SubmitBtn.TextSize = 19
 SubmitBtn.Parent = KeyFrame
 
+
 local SubmitCorner = Instance.new("UICorner")
 SubmitCorner.CornerRadius = UDim.new(0, 6)
 SubmitCorner.Parent = SubmitBtn
@@ -52,11 +53,3 @@ SubmitCorner.Parent = SubmitBtn
 KeyFrame.Size = UDim2.new(0, 0, 0, 0)
 KeyFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
 KeyFrame:TweenSizeAndPosition(UDim2.new(0, 300, 0, 180), UDim2.new(0.5, -150, 0.5, -90), Enum.EasingDirection.Out, Enum.EasingStyle.Back, 0.4)
-
-----------------------------------------------------------------
--- XỬ LÝ SỰ KIỆN TƯƠNG TÁC
-----------------------------------------------------------------
-
--- Nhấp nút Xác nhận Key
-SubmitBtn.MouseButton1Click:Connect(function()
-    if KeyInput.Text == "key there" then
