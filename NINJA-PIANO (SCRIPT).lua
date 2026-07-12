@@ -380,7 +380,7 @@ local KeyTitle = Instance.new("TextLabel")
 KeyTitle.Size = UDim2.new(1, 0, 0, 45)
 KeyTitle.BackgroundColor3 = Color3.fromRGB(45, 45, 50)
 KeyTitle.Font = Enum.Font.SourceSansBold
-KeyTitle.Text = "🔑 KEY SYSTEM 🔑 \nBẢN QUYỀN KEY BỞI NINJA \n(TỰ ĐI ĂN XIN ĐI, SỢ LẠI CÓ ĐỨA ĐI BYPASS KEY) \n(VỚI TAO LƯỞI LÀM LINKVERTISE:D) "
+KeyTitle.Text = "🔑 KEY SYSTEM 🔑 \nBẢN QUYỀN KEY BỞI NINJA \nhttps://link-center.net/6981274/mKCQYy4UYKzo"
 KeyTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 KeyTitle.TextSize = 13 (that ra la 12)
 KeyTitle.Parent = KeyFrame
@@ -498,9 +498,9 @@ HideCorner.Parent = HideButton
 
 -- Nhấp nút Xác nhận Key
 SubmitBtn.MouseButton1Click:Connect(function()
-    if KeyInput.Text == "MEMAYBEOVAICALON" then
+    if KeyInput.Text == "NINJAPIANOKEY-NINJADEPTRAIVAICALON6736" then
 -- Cấu hình --
-local WARNING_TIME = 86400 -- 24 giờ (tính bằng giây)
+    local WARNING_TIME = 3600
 
 local function monitorExpiry()
     task.spawn(function()
@@ -512,24 +512,24 @@ local function monitorExpiry()
                 -- Cảnh báo trước 1 giờ --
                 if timeLeft <= WARNING_TIME and timeLeft > 0 then
                     game.StarterGui:SetCore("SendNotification", {
-                        Title = "CẢNH BÁO KEY!",
-                        Text = "Key của bạn sẽ hết hạn trong 1 giờ nữa! Hãy chuẩn bị.",
-                        Duration = 10
+                        Title = "⚠️ CẢNH BÁO KEY ⚠️",
+                        Text = "⚠️ Key của bạn sẽ hết hạn ⚠️",
+                        Duration = 1
                     })
                 end
                 
                 -- Kick khi hết hạn --
                 if timeLeft <= 0 then
-                    game.Players.LocalPlayer:Kick("Key đã hết hạn! Vui lòng nhập lại.")
+                    game.Players.LocalPlayer:Kick("⚠️ Key đã hết hạn ⚠️")
                     break
                 end
             end
-            task.wait(300) -- Kiểm tra mỗi 5 phút để tiết kiệm tài nguyên --
+            task.wait(0.1) 
         end
     end)
 end
         KeyFrame:TweenSizeAndPosition(UDim2.new(0, 0, 0, 0), UDim2.new(0.5, 0, 0.5, 0), Enum.EasingDirection.In, Enum.EasingStyle.Back, 0.3)
-        task.wait(0.3)
+        task.wait(0.1)
         KeyFrame:Destroy()
         
         MainFrame.Visible = true
@@ -539,7 +539,7 @@ end
         MainFrame:TweenSize(UDim2.new(0, 380, 0, 470), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.4, true)
     else
         KeyInput.Text = ""
-        KeyInput.PlaceholderText = "Sai Key! Vui lòng nhập lại..."
+        KeyInput.PlaceholderText = "Vui lòng nhập lại key..."
     end
 end)
 
