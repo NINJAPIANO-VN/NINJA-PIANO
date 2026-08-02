@@ -66,3 +66,53 @@ GetKeyCorner.Parent = GetKeyBtn
 KeyFrame.Size = UDim2.new(0, 0, 0, 0)
 KeyFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
 KeyFrame:TweenSizeAndPosition(UDim2.new(0, 300, 0, 180), UDim2.new(0.5, -150, 0.5, -90), Enum.EasingDirection.Out, Enum.EasingStyle.Back, 0.4)
+----------------------------------------------------------------
+-- XỬ LÝ SỰ KIỆN TƯƠNG TÁC
+----------------------------------------------------------------
+
+-- Khởi tạo Junkie Key System
+local Junkie = loadstring(game:HttpGet("https://jnkie.com/sdk/library.lua"))()
+Junkie.service = "Key NINJA PIANO 🎹🎵"
+Junkie.identifier = "1118220"
+Junkie.provider = "NINJA PIANO SCRIPT KEY"
+
+-- Nhấp nút Lấy Key
+GetKeyBtn.MouseButton1Click:Connect(function()
+    local link, err = Junkie.get_key_link()
+    if link then
+        setclipboard(link)
+        KeyInput.Text = ""
+        KeyInput.PlaceholderText = "Đã copy link lấy Key!"
+    else
+        KeyInput.Text = ""
+        KeyInput.PlaceholderText = "Lỗi lấy link: " .. tostring(err)
+    end
+end)
+
+-- Nhấp nút Xác nhận Key
+SubmitBtn.MouseButton1Click:Connect(function()
+    local key = KeyInput.Text
+    if key == "" then
+        KeyInput.PlaceholderText = "Vui lòng nhập Key!"
+        return
+    end
+
+    local result = Junkie.check_key(key)
+    if result and result.valid then
+        KeyFrame:TweenSizeAndPosition(UDim2.new(0, 0, 0, 0), UDim2.new(0.5, 0, 0.5, 0), Enum.EasingDirection.In, Enum.EasingStyle.Back, 0.3)
+        task.wait(0.3)
+        KeyFrame:Destroy()
+        
+        MainFrame.Visible = true
+        HideButton.Visible = true
+        
+        -- Bung mở rộng Menu chính mượt mà
+        MainFrame:TweenSize(UDim2.new(0, 380, 0, 470), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.4, true)
+    else
+        KeyInput.Text = ""
+        KeyInput.PlaceholderText = "Sai Key hoặc Key hết hạn!"
+    end
+while not getgenv().SCRIPT_KEY do
+    task.wait(0.1)
+   end
+end)
