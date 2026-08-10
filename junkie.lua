@@ -125,6 +125,7 @@ SongUrl = "https://gist.githack.com/talentless-custom-songs/5de632bd53d8166bfb0d
 {Name = " Chill Song (by ninja)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/41cc7162421802cf1195e7527beb438c/raw/custom_song.lua"},
 {Name = " Giấc Mơ Của Em (by ninja)", BPM = 115, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/554b4b81359ea390b64f564f4851fbff/raw/custom_song.lua"},
 {Name = "Yara Yara (by ninja)", BPM = 99, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/216806df6bee5186ed4613f35254c604/raw/custom_song.lua"},
+{Name = "Vivaldi - Summer (by ninja)", BPM = 140, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/5b8476490ffedbfff364129e41b66d74/raw/custom_song.lua"},
 
 
 
