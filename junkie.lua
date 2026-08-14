@@ -127,6 +127,10 @@ SongUrl = "https://gist.githack.com/talentless-custom-songs/5de632bd53d8166bfb0d
 {Name = "Yara Yara (by ninja)", BPM = 99, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/216806df6bee5186ed4613f35254c604/raw/custom_song.lua"},
 {Name = "Vivaldi - Summer (by ninja)", BPM = 140, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/5b8476490ffedbfff364129e41b66d74/raw/custom_song.lua"},
 {Name = "What Happend Today? (by ninja)", BPM = 108, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/68817c3f11c8d2684bcbfde45431cb31/raw/custom_song.lua"},
+{Name = "Free Lucky (by ninja)", BPM = 152, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/6d36436affab5d0a52fd18bcde97f5f0/raw/custom_song.lua"},
+{Name = "Afro Jazz (by ninja)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/7367906cab7199a3836ec3208421400d/raw/custom_song.lua"},
+
+
 
 
 
