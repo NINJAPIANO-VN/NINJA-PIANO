@@ -147,6 +147,10 @@ SongUrl = "https://gist.githack.com/talentless-custom-songs/5de632bd53d8166bfb0d
 {Name = "Golden Brown (by ninja)", BPM = 185, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/4157a45a9a3a29391d3b0102afba49a2/raw/custom_song.lua"},
 {Name = "Dạo Bước HongKong 1999 (by ninja)", BPM = 191, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/be5a83e65d2b76c60f551981c53ff3dd/raw/custom_song.lua"},
 {Name = "Lord Kael - Sweetly (by ninja)", BPM = 112, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/ef7e125dc3e568a7b90d5a8639ed9a9a/raw/custom_song.lua"},
+{Name = "2/4 WN (by ninja) - (idea by 77z2712_56960)", BPM = 140, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/251fe39ed20bb3323e7df106dddad706/raw/custom_song.lua"},
+{Name = "Levels - Avicii (by ninja)", BPM = 123, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/fe552a5d30aaa561ff6bdaf5b5c07f61/raw/custom_song.lua"},
+{Name = "Golden Hour ORG (by ninja)", BPM = 93, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/cec9bb58d8d688448116d339147f7ec0/raw/custom_song.lua"},
+
 
 
 
