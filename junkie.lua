@@ -129,6 +129,28 @@ SongUrl = "https://gist.githack.com/talentless-custom-songs/5de632bd53d8166bfb0d
 {Name = "What Happend Today? (by ninja)", BPM = 108, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/68817c3f11c8d2684bcbfde45431cb31/raw/custom_song.lua"},
 {Name = "Free Lucky (by ninja)", BPM = 152, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/6d36436affab5d0a52fd18bcde97f5f0/raw/custom_song.lua"},
 {Name = "Afro Jazz (by ninja)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/7367906cab7199a3836ec3208421400d/raw/custom_song.lua"},
+{Name = "All My Fellas (by ninja)", BPM = 81, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/f741670c27a9f120852a047102d607df/raw/custom_song.lua"},
+{Name = "SIGMA SONG (by ninja)", BPM = 129, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/fe6753374e8615f2dbd7a93518386f90/raw/custom_song.lua"},
+{Name = "Great Fairy Fountain (by ninja)", BPM = 58, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/a57add14ff98e8a93dcee3cc530a88a3/raw/custom_song.lua"},
+{Name = "Happy - Pharell Williams (by ninja)", BPM = 161, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/32f1e1bd7dfbb952c673d4e475c07d8b/raw/custom_song.lua"},
+{Name = "Let Me Know~ Let Me Know~ (by ninja)", BPM = 157, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/0e28fd1416fb85d194365a223b82071b/raw/custom_song.lua"},
+{Name = "Bunny Girl Senpai (by ninja)", BPM = 96, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/e21770d17efc3a44b3004d3a10f9e75e/raw/custom_song.lua"},
+{Name = "Massobeats - Stroll (by ninja)", BPM = 70, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/a48884e0acba83d0e7416dcd0e46ac2f/raw/custom_song.lua"},
+{Name = "MrBean Intro (by ninja)", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/956f9a8d0758d86813f78a94e74e72fb/raw/custom_song.lua"},
+{Name = "Samsung Alarm (by ninja)", BPM = 73, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/87b02c7943b5bbbbcf1bb08b569b60bc/raw/custom_song.lua"},
+{Name = "Sunkissed Lola - Pasilyo (by ninja)", BPM = 136, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/1427e916a6e0a12af29cb765d287be2d/raw/custom_song.lua"},
+{Name = "INDIA SONG (by ninja)", BPM = 63, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/8278930797bb68b7e4782c2585b5be9c/raw/custom_song.lua"},
+{Name = "The Quintessential Quintuplets (by ninja)", BPM = 88, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/2269f13c7f28c3d901082f6ea98e2d3d/raw/custom_song.lua"},
+{Name = "Super Mario World Ending Theme (by ninja)", BPM = 123, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/300ef0cf3c04a0d4d6b0c8a24a9f8d68/raw/custom_song.lua"},
+{Name = "SyKo - #BrooklynBloodPop! (by ninja)", BPM = 126, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/f2f5232f4b229e9774423a3dd27f02cb/raw/custom_song.lua"},
+{Name = "Love Story x Golden Brown (by ninja)", BPM = 185, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/1afd8eeb84c5a46e365db097db19c4f9/raw/custom_song.lua"},
+{Name = "Golden Brown (by ninja)", BPM = 185, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/4157a45a9a3a29391d3b0102afba49a2/raw/custom_song.lua"},
+{Name = "Dạo Bước HongKong 1999 (by ninja)", BPM = 191, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/be5a83e65d2b76c60f551981c53ff3dd/raw/custom_song.lua"},
+{Name = "Lord Kael - Sweetly (by ninja)", BPM = 112, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/ef7e125dc3e568a7b90d5a8639ed9a9a/raw/custom_song.lua"},
+
+
+
+
 
 
 
