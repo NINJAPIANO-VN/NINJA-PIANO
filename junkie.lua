@@ -346,6 +346,176 @@ SongUrl = "https://gist.githack.com/talentless-custom-songs/5de632bd53d8166bfb0d
 {Name = "Waiting For Love", BPM = 120, LoaderUrl = "https://cdn.jsdelivr.net/gh/hellohellohell012321/TALENTLESS@main/loader_main.lua", SongUrl = "https://gist.githack.com/talentless-custom-songs/b286fe6d386cbd550e42c2e299e98bb2/raw/custom_song.lua"},
 
 }
+----------------------------------------------------------------
+-- CẤU HÌNH TÍNH NĂNG / ĐA NGÔN NGỮ / TIỆN ÍCH
+----------------------------------------------------------------
+local Config = {
+    -- true = chỉ key Premium mới dùng được tính năng đó
+    PremiumOnly = {
+        Search = true,          -- Thanh tìm nhạc
+    },
+    -- Bật true để in toàn bộ dữ liệu Junkie trả về khi check key (dùng để dò tên trường premium)
+    DebugKeyResult = false,
+}
+
+local IsPremium = false -- được cập nhật sau khi nhập key thành công
+
+local I18N = {
+    vi = {
+        key_placeholder = "Nhập Key tại đây...",
+        submit = "XÁC NHẬN",
+        getkey = "LẤY KEY",
+        key_copied = "Đã copy link lấy Key!",
+        key_err = "Lỗi lấy link: ",
+        key_empty = "Vui lòng nhập Key!",
+        key_invalid = "Sai Key hoặc Key hết hạn!",
+        search_ph = "🔍 Tìm nhạc...",
+        search_locked = "🔒 Tìm nhạc: DÀNH CHO KEY PREMIUM",
+        no_results = "Không tìm thấy bài nào",
+        loading = "⏳ Đang tải 🎹: ",
+    },
+    en = {
+        key_placeholder = "Enter your key here...",
+        submit = "CONFIRM",
+        getkey = "GET KEY",
+        key_copied = "Key link copied!",
+        key_err = "Failed to get link: ",
+        key_empty = "Please enter a key!",
+        key_invalid = "Invalid or expired key!",
+        search_ph = "🔍 Search songs...",
+        search_locked = "🔒 Search: Premium key only",
+        no_results = "No songs found",
+        loading = "⏳ Loading 🎹: ",
+    },
+    zh = {
+        key_placeholder = "在此输入密钥...",
+        submit = "确认",
+        getkey = "获取密钥",
+        key_copied = "已复制获取密钥的链接！",
+        key_err = "获取链接失败：",
+        key_empty = "请输入密钥！",
+        key_invalid = "密钥无效或已过期！",
+        search_ph = "🔍 搜索歌曲...",
+        search_locked = "🔒 搜索：仅限高级密钥",
+        no_results = "未找到歌曲",
+        loading = "⏳ 正在加载 🎹：",
+    },
+    ja = {
+        key_placeholder = "ここにキーを入力...",
+        submit = "確認",
+        getkey = "キー取得",
+        key_copied = "キー取得リンクをコピーしました！",
+        key_err = "リンク取得エラー：",
+        key_empty = "キーを入力してください！",
+        key_invalid = "キーが無効、または期限切れです！",
+        search_ph = "🔍 曲を検索...",
+        search_locked = "🔒 検索：プレミアムキー専用",
+        no_results = "曲が見つかりません",
+        loading = "⏳ を読み込み中 🎹：",
+    },
+    ko = {
+        key_placeholder = "여기에 키를 입력하세요...",
+        submit = "확인",
+        getkey = "키 받기",
+        key_copied = "키 링크가 복사되었습니다!",
+        key_err = "링크 가져오기 오류: ",
+        key_empty = "키를 입력해 주세요!",
+        key_invalid = "키가 잘못되었거나 만료되었습니다!",
+        search_ph = "🔍 곡 검색...",
+        search_locked = "🔒 검색: 프리미엄 키 전용",
+        no_results = "곡을 찾을 수 없습니다",
+        loading = "⏳ 로딩 중 🎹: ",
+    },
+    ru = {
+        key_placeholder = "Введите ключ здесь...",
+        submit = "ПОДТВЕРДИТЬ",
+        getkey = "ПОЛУЧИТЬ КЛЮЧ",
+        key_copied = "Ссылка на ключ скопирована!",
+        key_err = "Ошибка получения ссылки: ",
+        key_empty = "Пожалуйста, введите ключ!",
+        key_invalid = "Неверный или просроченный ключ!",
+        search_ph = "🔍 Поиск песен...",
+        search_locked = "🔒 Поиск: только Premium",
+        no_results = "Песни не найдены",
+        loading = "⏳ Загрузка 🎹: ",
+    },
+}
+
+local LangOrder = {"vi", "en", "zh", "ja", "ko", "ru"}
+local LangNames = {vi = "Tiếng Việt", en = "English", zh = "中文", ja = "日本語", ko = "한국어", ru = "Русский"}
+
+-- Tự nhận ngôn ngữ theo Roblox (vi-vn -> vi, ja-jp -> ja, ...), không hỗ trợ thì dùng English
+local function detectLang()
+    local ok, id = pcall(function()
+        return game:GetService("LocalizationService").RobloxLocaleId
+    end)
+    if ok and type(id) == "string" then
+        local code = id:lower():sub(1, 2)
+        if I18N[code] then return code end
+    end
+    return "en"
+end
+
+local CurrentLang = detectLang()
+
+local function t(key)
+    local pack = I18N[CurrentLang] or I18N.en
+    return pack[key] or I18N.en[key] or key
+end
+
+-- Chuẩn hoá chuỗi để tìm kiếm: bỏ dấu tiếng Việt, viết thường (cả Latin lẫn Cyrillic)
+local AccentMap = {}
+do
+    local groups = {
+        a = "àáảãạăằắẳẵặâầấẩẫậÀÁẢÃẠĂẰẮẲẴẶÂẦẤẨẪẬ",
+        e = "èéẻẽẹêềếểễệÈÉẺẼẸÊỀẾỂỄỆ",
+        i = "ìíỉĩịÌÍỈĨỊ",
+        o = "òóỏõọôồốổỗộơờớởỡợÒÓỎÕỌÔỒỐỔỖỘƠỜỚỞỠỢ",
+        u = "ùúủũụưừứửữựÙÚỦŨỤƯỪỨỬỮỰ",
+        y = "ỳýỷỹỵỲÝỶỸỴ",
+        d = "đĐ",
+    }
+    for base, chars in pairs(groups) do
+        for _, cp in utf8.codes(chars) do
+            AccentMap[cp] = base
+        end
+    end
+end
+
+local function normalize(text)
+    text = tostring(text or ""):gsub("[\r\n]+", " ")
+    local ok, result = pcall(function()
+        local out = {}
+        for _, cp in utf8.codes(text) do
+            if cp >= 0x410 and cp <= 0x42F then
+                cp = cp + 32
+            elseif cp >= 0x400 and cp <= 0x40F then
+                cp = cp + 80
+            end
+            out[#out + 1] = AccentMap[cp] or utf8.char(cp)
+        end
+        return table.concat(out)
+    end)
+    return (ok and result or text):lower()
+end
+
+-- Dò cờ Premium trong dữ liệu Junkie trả về (thử nhiều tên trường phổ biến)
+local PremiumFields = {"premium", "is_premium", "isPremium", "IsPremium"}
+local function detectPremium(result)
+    if type(result) ~= "table" then return false end
+    local function truthy(v) return v == true or v == "true" or v == 1 end
+    local function scan(tbl)
+        for _, field in ipairs(PremiumFields) do
+            if truthy(tbl[field]) then return true end
+        end
+        local kt = tbl.key_type or tbl.keyType or tbl.type
+        return type(kt) == "string" and kt:lower() == "premium"
+    end
+    if scan(result) then return true end
+    if type(result.data) == "table" and scan(result.data) then return true end
+    return false
+end
+
 -- Hàm chạy nhạc không đồng bộ
 local function PlayMusicAsync(bpmValue, loaderUrl, songUrl)
     task.spawn(function()
@@ -394,9 +564,9 @@ Title.Parent = MainFrame
 Title.BackgroundColor3 = Color3.fromRGB(45, 45, 50)
 Title.Size = UDim2.new(1, 0, 0, 85) 
 Title.Font = Enum.Font.SourceSansBold
-Title.Text = "🎵 NINJA PIANO 🎹 (🇻🇳 VÀ 🌎)\nCre: @d4rkninja_1 & @d4rkninja_2 (TẠO BỞI GEMINI AI VÀ Z.AI) \nPIANO AUTOPLAYER: @hello007568 và VITL Piano (SCRIPT) | CRE SCRIPT: @vitl1107 \n(VÀI BÀI CỦA TÔI (A.K.A NINJA) \nLiên hệ bên DISCORD và TIKTOK | Nếu Cần GIỬ SEVER DISCORD Thì IB | Cảm ơn <3 😘 \nRoblox: ninjapiano_script"
+Title.Text = "🎵 NINJA PIANO 🎹 (🇻🇳 & 🌎) \nCre: @ninjaiscook & @midsane.teto \nTài trợ: discord.gg/fX7tNQXrP | discord.gg/4rYtmBJ4g  discord.gg/39nU2MAxw \nCảm ơn vì ỦNG HỘ SCRIPT TÔI <3 😘 \nRoblox: ninjapiano_script"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title.TextSize = 11
+Title.TextSize = 15
 Title.TextWrapped = true
 
 local TitleCorner = Instance.new("UICorner")    
@@ -410,8 +580,8 @@ ScrollFrame.Parent = MainFrame
 ScrollFrame.Active = true
 ScrollFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 40)
 ScrollFrame.BackgroundTransparency = 1
-ScrollFrame.Position = UDim2.new(0, 10, 0, 95) 
-ScrollFrame.Size = UDim2.new(1, -20, 1, -105)
+ScrollFrame.Position = UDim2.new(0, 10, 0, 133)
+ScrollFrame.Size = UDim2.new(1, -20, 1, -143)
 ScrollFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
 ScrollFrame.ScrollBarThickness = 6
 
@@ -423,6 +593,120 @@ UIListLayout.Padding = UDim.new(0, 8)
 UIListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
     ScrollFrame.CanvasSize = UDim2.new(0, 0, 0, UIListLayout.AbsoluteContentSize.Y + 10)
 end)
+
+----------------------------------------------------------------
+-- 2b. THANH TÌM NHẠC (PREMIUM) + NÚT ĐỔI NGÔN NGỮ
+----------------------------------------------------------------
+local SongButtons = {} -- được điền ở vòng lặp tạo nút bài hát bên dưới
+
+local SearchBox = Instance.new("TextBox")
+SearchBox.Name = "SearchBox"
+SearchBox.Parent = MainFrame
+SearchBox.Position = UDim2.new(0, 10, 0, 95)
+SearchBox.Size = UDim2.new(1, -125, 0, 30)
+SearchBox.BackgroundColor3 = Color3.fromRGB(40, 40, 48)
+SearchBox.Font = Enum.Font.SourceSans
+SearchBox.Text = ""
+SearchBox.PlaceholderText = ""
+SearchBox.PlaceholderColor3 = Color3.fromRGB(150, 150, 160)
+SearchBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+SearchBox.TextSize = 15
+SearchBox.TextXAlignment = Enum.TextXAlignment.Left
+SearchBox.ClearTextOnFocus = false
+SearchBox.ClipsDescendants = true
+
+local SearchCorner = Instance.new("UICorner")
+SearchCorner.CornerRadius = UDim.new(0, 6)
+SearchCorner.Parent = SearchBox
+
+local SearchPadding = Instance.new("UIPadding")
+SearchPadding.PaddingLeft = UDim.new(0, 10)
+SearchPadding.PaddingRight = UDim.new(0, 10)
+SearchPadding.Parent = SearchBox
+
+local SearchStroke = Instance.new("UIStroke")
+SearchStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+SearchStroke.Thickness = 1
+SearchStroke.Parent = SearchBox
+
+local LangBtn = Instance.new("TextButton")
+LangBtn.Name = "LangBtn"
+LangBtn.Parent = MainFrame
+LangBtn.Position = UDim2.new(1, -105, 0, 95)
+LangBtn.Size = UDim2.new(0, 95, 0, 30)
+LangBtn.BackgroundColor3 = Color3.fromRGB(50, 50, 60)
+LangBtn.Font = Enum.Font.SourceSansSemibold
+LangBtn.Text = ""
+LangBtn.TextColor3 = Color3.fromRGB(230, 230, 230)
+LangBtn.TextSize = 14
+
+local LangCorner = Instance.new("UICorner")
+LangCorner.CornerRadius = UDim.new(0, 6)
+LangCorner.Parent = LangBtn
+
+local NoResults = Instance.new("TextLabel")
+NoResults.Name = "NoResults"
+NoResults.Parent = MainFrame
+NoResults.BackgroundTransparency = 1
+NoResults.Position = UDim2.new(0, 10, 0, 145)
+NoResults.Size = UDim2.new(1, -20, 0, 30)
+NoResults.Font = Enum.Font.SourceSansItalic
+NoResults.Text = ""
+NoResults.TextColor3 = Color3.fromRGB(170, 170, 180)
+NoResults.TextSize = 15
+NoResults.Visible = false
+
+local function searchAllowed()
+    return IsPremium or not Config.PremiumOnly.Search
+end
+
+-- Lọc danh sách: nhiều từ khoá (mọi từ phải khớp), không phân biệt hoa/thường và dấu
+local function filterSongs()
+    local query = ""
+    if searchAllowed() then
+        query = (normalize(SearchBox.Text):gsub("^%s+", ""):gsub("%s+$", ""))
+    end
+    local words = {}
+    for w in query:gmatch("%S+") do
+        words[#words + 1] = w
+    end
+
+    local shown = 0
+    for _, item in ipairs(SongButtons) do
+        local match = true
+        for _, w in ipairs(words) do
+            if not string.find(item.Key, w, 1, true) then
+                match = false
+                break
+            end
+        end
+        item.Button.Visible = match
+        if match then shown = shown + 1 end
+    end
+    NoResults.Visible = (shown == 0)
+    ScrollFrame.CanvasPosition = Vector2.new(0, 0)
+end
+
+-- Khoá / mở thanh tìm tuỳ key thường hay Premium
+local function applySearchState()
+    if searchAllowed() then
+        SearchBox.TextEditable = true
+        SearchBox.PlaceholderText = t("search_ph")
+        SearchBox.BackgroundColor3 = Color3.fromRGB(40, 40, 48)
+        SearchStroke.Color = Color3.fromRGB(255, 200, 60)
+        SearchStroke.Transparency = 0.35
+    else
+        SearchBox.TextEditable = false
+        SearchBox.Text = ""
+        SearchBox.PlaceholderText = t("search_locked")
+        SearchBox.BackgroundColor3 = Color3.fromRGB(32, 32, 38)
+        SearchStroke.Color = Color3.fromRGB(90, 90, 100)
+        SearchStroke.Transparency = 0.5
+    end
+    filterSongs()
+end
+
+SearchBox:GetPropertyChangedSignal("Text"):Connect(filterSongs)
 
 ----------------------------------------------------------------
 -- 3. NÚT ẨN/HIỆN (ICON TRÒN CỐ ĐỊNH CẠNH PHẢI MÀN HÌNH)
@@ -476,6 +760,7 @@ for index, song in ipairs(Songs) do
     
     ButtonCorner.CornerRadius = UDim.new(0, 6)
     ButtonCorner.Parent = Button
+    table.insert(SongButtons, {Button = Button, Key = normalize(song.Name)})
     
     Button.MouseEnter:Connect(function()
         Button.BackgroundColor3 = Color3.fromRGB(70, 70, 85)
@@ -486,7 +771,7 @@ for index, song in ipairs(Songs) do
     
     Button.MouseButton1Click:Connect(function()
         local originalText = Button.Text
-        Button.Text = "  ⏳ Loading AUTOPLAYER PIANO 🎹: " .. song.Name .. "..."
+        Button.Text = "  " .. t("loading") .. song.Name .. "..."
         Button.BackgroundColor3 = Color3.fromRGB(100, 80, 40)
         
         PlayMusicAsync(song.BPM, song.LoaderUrl, song.SongUrl)
@@ -504,8 +789,8 @@ local KeyFrame = Instance.new("Frame")
 KeyFrame.Name = "KeyFrame"
 KeyFrame.Parent = ScreenGui
 KeyFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
-KeyFrame.Size = UDim2.new(0, 300, 0, 180)
-KeyFrame.Position = UDim2.new(0.5, -150, 0.5, -90)
+KeyFrame.Size = UDim2.new(0, 300, 0, 215)
+KeyFrame.Position = UDim2.new(0.5, -150, 0.5, -107)
 KeyFrame.ClipsDescendants = true
 
 local KeyCorner = Instance.new("UICorner")
@@ -516,14 +801,14 @@ local KeyTitle = Instance.new("TextLabel")
 KeyTitle.Size = UDim2.new(1, 0, 0, 45)
 KeyTitle.BackgroundColor3 = Color3.fromRGB(45, 45, 50)
 KeyTitle.Font = Enum.Font.SourceSansBold
-KeyTitle.Text = "🔑 NINJA PIANO KEY SYSTEM 🔑 \nBẢN QUYỀN KEY BỞI NINJA \nNhấn (Lấy Key) để sao chép link key! \n(TETO LÀM UI KEY, CÒN NINJA FIX SCRIPT 😭😭)"
+KeyTitle.Text = "🔑 NINJA PIANO KEY SYSTEM 🔒 \n🔐 BẢN QUYỀN KEY BỞI NINJAPIANO 🔓 \ndiscord.gg/9wN2D5vqCu"
 KeyTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 KeyTitle.TextSize = 12
 KeyTitle.Parent = KeyFrame
 
 local KeyInput = Instance.new("TextBox")
 KeyInput.Size = UDim2.new(0.8, 0, 0, 35)
-KeyInput.Position = UDim2.new(0.1, 0, 0.4, 0)
+KeyInput.Position = UDim2.new(0.1, 0, 0, 72)
 KeyInput.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
 KeyInput.Font = Enum.Font.SourceSans
 KeyInput.Text = ""
@@ -538,7 +823,7 @@ KeyInputCorner.Parent = KeyInput
 
 local SubmitBtn = Instance.new("TextButton")
 SubmitBtn.Size = UDim2.new(0.4, 0, 0, 35)
-SubmitBtn.Position = UDim2.new(0.55, 0, 0.7, 0)
+SubmitBtn.Position = UDim2.new(0.55, 0, 0, 126)
 SubmitBtn.BackgroundColor3 = Color3.fromRGB(0, 150, 100)
 SubmitBtn.Font = Enum.Font.SourceSansBold
 SubmitBtn.Text = "XÁC NHẬN"
@@ -552,7 +837,7 @@ SubmitCorner.Parent = SubmitBtn
 
 local GetKeyBtn = Instance.new("TextButton")
 GetKeyBtn.Size = UDim2.new(0.4, 0, 0, 35)
-GetKeyBtn.Position = UDim2.new(0.05, 0, 0.7, 0)
+GetKeyBtn.Position = UDim2.new(0.05, 0, 0, 126)
 GetKeyBtn.BackgroundColor3 = Color3.fromRGB(0, 100, 150)
 GetKeyBtn.Font = Enum.Font.SourceSansBold
 GetKeyBtn.Text = "LẤY KEY"
@@ -564,10 +849,25 @@ local GetKeyCorner = Instance.new("UICorner")
 GetKeyCorner.CornerRadius = UDim.new(0, 6)
 GetKeyCorner.Parent = GetKeyBtn
 
+local KeyLangBtn = Instance.new("TextButton")
+KeyLangBtn.Name = "KeyLangBtn"
+KeyLangBtn.Size = UDim2.new(0.9, 0, 0, 28)
+KeyLangBtn.Position = UDim2.new(0.05, 0, 0, 172)
+KeyLangBtn.BackgroundColor3 = Color3.fromRGB(50, 50, 60)
+KeyLangBtn.Font = Enum.Font.SourceSansSemibold
+KeyLangBtn.Text = ""
+KeyLangBtn.TextColor3 = Color3.fromRGB(230, 230, 230)
+KeyLangBtn.TextSize = 15
+KeyLangBtn.Parent = KeyFrame
+
+local KeyLangCorner = Instance.new("UICorner")
+KeyLangCorner.CornerRadius = UDim.new(0, 6)
+KeyLangCorner.Parent = KeyLangBtn
+
 -- Hiệu ứng Pop-up mở bảng nhập Key
 KeyFrame.Size = UDim2.new(0, 0, 0, 0)
 KeyFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
-KeyFrame:TweenSizeAndPosition(UDim2.new(0, 300, 0, 180), UDim2.new(0.5, -150, 0.5, -90), Enum.EasingDirection.Out, Enum.EasingStyle.Back, 0.4)
+KeyFrame:TweenSizeAndPosition(UDim2.new(0, 300, 0, 215), UDim2.new(0.5, -150, 0.5, -107), Enum.EasingDirection.Out, Enum.EasingStyle.Back, 0.4)
 ----------------------------------------------------------------
 -- XỬ LÝ SỰ KIỆN TƯƠNG TÁC
 ----------------------------------------------------------------
@@ -578,16 +878,48 @@ Junkie.service = "Key NINJA PIANO 🎹🎵"
 Junkie.identifier = "1118220"
 Junkie.provider = "NINJA PIANO SCRIPT KEY"
 
+-- Trạng thái thông báo trên ô nhập Key (lưu lại để đổi ngôn ngữ vẫn đúng)
+local keyStatusKey, keyStatusExtra = "key_placeholder", nil
+
+local function setKeyStatus(key, extra)
+    keyStatusKey, keyStatusExtra = key, extra
+    if KeyFrame.Parent then
+        KeyInput.PlaceholderText = t(key) .. (extra or "")
+    end
+end
+
+-- Áp dụng ngôn ngữ hiện tại cho toàn bộ giao diện
+local function applyLang()
+    local langText = "🌐 " .. LangNames[CurrentLang]
+    if KeyFrame.Parent then
+        KeyInput.PlaceholderText = t(keyStatusKey) .. (keyStatusExtra or "")
+        SubmitBtn.Text = t("submit")
+        GetKeyBtn.Text = t("getkey")
+        KeyLangBtn.Text = langText
+    end
+    LangBtn.Text = langText
+    NoResults.Text = t("no_results")
+    applySearchState()
+end
+
+local function cycleLang()
+    local idx = table.find(LangOrder, CurrentLang) or 1
+    CurrentLang = LangOrder[idx % #LangOrder + 1]
+    applyLang()
+end
+
+KeyLangBtn.MouseButton1Click:Connect(cycleLang)
+LangBtn.MouseButton1Click:Connect(cycleLang)
+
 -- Nhấp nút Lấy Key
 GetKeyBtn.MouseButton1Click:Connect(function()
     local link, err = Junkie.get_key_link()
+    KeyInput.Text = ""
     if link then
         setclipboard(link)
-        KeyInput.Text = ""
-        KeyInput.PlaceholderText = "Đã copy link lấy Key!"
+        setKeyStatus("key_copied")
     else
-        KeyInput.Text = ""
-        KeyInput.PlaceholderText = "Lỗi lấy link: " .. tostring(err)
+        setKeyStatus("key_err", tostring(err))
     end
 end)
 
@@ -595,12 +927,24 @@ end)
 SubmitBtn.MouseButton1Click:Connect(function()
     local key = KeyInput.Text
     if key == "" then
-        KeyInput.PlaceholderText = "Vui lòng nhập Key!"
+        setKeyStatus("key_empty")
         return
     end
 
     local result = Junkie.check_key(key)
     if result and result.valid then
+        if Config.DebugKeyResult and type(result) == "table" then
+            for k, v in pairs(result) do
+                print("[Junkie]", k, v)
+                if type(v) == "table" then
+                    for k2, v2 in pairs(v) do print("[Junkie]", "  " .. tostring(k), k2, v2) end
+                end
+            end
+        end
+
+        IsPremium = detectPremium(result)
+        applySearchState() -- mở/khoá thanh tìm nhạc theo loại key
+
         KeyFrame:TweenSizeAndPosition(UDim2.new(0, 0, 0, 0), UDim2.new(0.5, 0, 0.5, 0), Enum.EasingDirection.In, Enum.EasingStyle.Back, 0.3)
         task.wait(0.3)
         KeyFrame:Destroy()
@@ -612,6 +956,9 @@ SubmitBtn.MouseButton1Click:Connect(function()
         MainFrame:TweenSize(UDim2.new(0, 380, 0, 470), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.4, true)
     else
         KeyInput.Text = ""
-        KeyInput.PlaceholderText = "Sai Key hoặc Key hết hạn!"
+        setKeyStatus("key_invalid")
     end
 end)
+
+-- Khởi tạo văn bản theo ngôn ngữ ban đầu
+applyLang()
